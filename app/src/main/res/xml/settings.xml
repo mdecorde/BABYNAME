@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="pref_next_ontouch"
+        android:title="Go to next name on rate touch"
+        android:summary="When pressing the rate bar, go directly to the next baby name."
+        android:defaultValue="false" />
+</PreferenceScreen>

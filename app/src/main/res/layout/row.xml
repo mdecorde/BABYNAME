@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="New Text"
+            android:id="@+id/list_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="0.99" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="2">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/go"
+                android:id="@+id/list_go"
+                android:contentDescription="@string/go"
+                android:background="@null"
+                android:src="@drawable/star"
+                android:layout_marginBottom="10dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top"
+                android:id="@+id/list_top"
+                android:contentDescription="@string/top"
+                android:background="@null"
+                android:src="@drawable/medal"
+                android:layout_marginBottom="10dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:id="@+id/list_reset"
+                android:contentDescription="@string/reset"
+                android:background="@null"
+                android:src="@drawable/medaldelete"
+                android:layout_marginBottom="10dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:id="@+id/list_delete"
+                android:contentDescription="@string/delete"
+                android:background="@null"
+                android:src="@drawable/cross"
+                android:layout_marginBottom="10dp" />
+        </GridLayout>
+    </LinearLayout>
+
+</RelativeLayout>

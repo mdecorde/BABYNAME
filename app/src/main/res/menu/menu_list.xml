@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item
+            android:id="@+id/action_reset_baby"
+            android:title="@string/action_reset_baby"/>
+        <item
+            android:id="@+id/action_top_baby"
+            android:title="@string/action_top_baby"/>
+        <item
+            android:id="@+id/action_delete_baby"
+            android:title="@string/action_delete_baby"/>
+</menu>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b1dd21c6c0a474c987bbac48f0572be705f7f459">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_1a9e03ee49e3b3a51cef25ac83799c689d1ce052/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_a5613cdbf1519f3bc1ec95478f610e655dbc9555/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_2713936f1764c0876e406c41eb7e02c97e4931d6/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_897c862eb5f3d2157781393f782b4ea985ba8016/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_24e7253339edf66c1033ceb4026079d1dd55e862/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_6c1f4c231bcea15231d62945303370cb9f56f8bc/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_2aaf7c969830f6eb7ab990e40604652207fe18f7/classes.dex" />
+    </item>
+    <item
+        jar="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="410bd503417fe89ddd425fb8fd92d0d5234fd007">
+        <dex dex="/media/mdecorde/P1/projets/BabyName/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b268c689fed5a427b32e0545d01e62514343fc53/classes.dex" />
+    </item>
+
+</items>
