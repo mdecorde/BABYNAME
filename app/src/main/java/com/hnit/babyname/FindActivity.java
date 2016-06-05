@@ -75,7 +75,7 @@ public class FindActivity extends AppCompatActivity {
         rateBar.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                if (goToNext && motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     nextName();
                 }
                 return false;
