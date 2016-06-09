@@ -19,8 +19,6 @@ http://www.gnu.org/licenses
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import com.hnit.babyname.R;
-
 /**
  * Created by mdecorde on 15/05/16.
  */

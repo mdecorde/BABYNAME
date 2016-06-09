@@ -29,8 +29,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.hnit.babyname.R;
-
 public class BabyNameAdapter extends ArrayAdapter<BabyNameProject> {
 
     private final MainActivity context;

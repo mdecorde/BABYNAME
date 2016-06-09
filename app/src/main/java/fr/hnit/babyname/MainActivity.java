@@ -30,8 +30,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.hnit.babyname.R;
-
 import java.util.ArrayList;
 import java.util.List;
 

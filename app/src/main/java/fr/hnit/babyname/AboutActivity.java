@@ -19,8 +19,6 @@ http://www.gnu.org/licenses
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.hnit.babyname.R;
-
 public class AboutActivity extends AppCompatActivity {
 
     @Override

@@ -29,8 +29,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hnit.babyname.R;
-
 public class FindActivity extends AppCompatActivity {
 
     public static final String PROJECT_EXTRA = "project_position";

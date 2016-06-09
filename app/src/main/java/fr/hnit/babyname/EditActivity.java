@@ -29,8 +29,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.hnit.babyname.R;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
