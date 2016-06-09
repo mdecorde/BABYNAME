@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 public class NameData3 {
 public static final String M = "m";
 public static final String F = "f";

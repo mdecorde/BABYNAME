@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hnit.babyname"
+    package="fr.hnit.babyname"
     android:installLocation="auto"
     android:versionCode="1"
     android:versionName="0.1">
@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="fr.hnit.babyname.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,37 +19,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EditActivity"
+            android:name="fr.hnit.babyname.EditActivity"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="fr.hnit.babyname.MainActivity" />
         </activity>
         <activity
-            android:name=".FindActivity"
+            android:name="fr.hnit.babyname.FindActivity"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="fr.hnit.babyname.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="fr.hnit.babyname.SettingsActivity"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="fr.hnit.babyname.MainActivity" />
         </activity>
         <activity
-            android:name=".BrowseActivity"
+            android:name="fr.hnit.babyname.BrowseActivity"
             android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="fr.hnit.babyname.MainActivity" />
         </activity>
         <activity android:name=".AboutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="fr.hnit.babyname.MainActivity" />
         </activity>
     </application>
 

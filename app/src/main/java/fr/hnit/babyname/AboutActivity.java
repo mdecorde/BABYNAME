@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 /*
 The babyname app is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public
@@ -19,11 +19,13 @@ http://www.gnu.org/licenses
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class BrowseActivity extends AppCompatActivity {
+import com.hnit.babyname.R;
+
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
+        setContentView(R.layout.activity_about);
     }
 }

@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 /*
 The babyname app is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public
@@ -29,6 +29,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.hnit.babyname.R;
 
 import java.util.ArrayList;
 import java.util.List;

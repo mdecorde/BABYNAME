@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 /*
 The babyname app is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public
@@ -19,7 +19,6 @@ http://www.gnu.org/licenses
 import android.util.SparseArray;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 
 /**

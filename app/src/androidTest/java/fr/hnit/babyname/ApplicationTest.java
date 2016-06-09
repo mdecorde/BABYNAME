@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

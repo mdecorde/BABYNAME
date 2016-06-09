@@ -1,4 +1,4 @@
-package com.hnit.babyname;
+package fr.hnit.babyname;
 /*
 The babyname app is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public
@@ -16,18 +16,16 @@ You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
  */
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
 
-/**
- * Created by mdecorde on 15/05/16.
- */
-public class SettingsFragment extends PreferenceFragment {
+import com.hnit.babyname.R;
+
+public class BrowseActivity extends AppCompatActivity {
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Load the preferences from an XML resource
-        addPreferencesFromResource(R.xml.settings);
+        setContentView(R.layout.activity_browse);
     }
 }
