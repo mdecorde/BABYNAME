@@ -40,6 +40,7 @@ public class FindActivity extends AppCompatActivity {
     Button nextButton;
     RatingBar rateBar;
     TextView nameText;
+    TextView remainingText;
     boolean goToNext;
 
     @Override
@@ -59,6 +60,7 @@ public class FindActivity extends AppCompatActivity {
         nextButton = (Button) findViewById(R.id.next_button);
         rateBar = (RatingBar) findViewById(R.id.rate_bar);
         nameText = (TextView) findViewById(R.id.name_text);
+        remainingText = (TextView) findViewById(R.id.remaining_text);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +108,7 @@ public class FindActivity extends AppCompatActivity {
         } else {
             String newName = currentBabyName.name;
             nameText.setText(newName);
+            remainingText.setText(""+project.nexts.size()+" left.");
             rateBar.setRating(0);
         }
     }
@@ -113,7 +116,7 @@ public class FindActivity extends AppCompatActivity {
     protected void saveRate() {
         int rate = (int)rateBar.getRating();
         int score = project.evaluate(currentBabyName, rate);
-        Toast.makeText(FindActivity.this, currentBabyName.name+ " rated: "+score+ "(+"+rate+")", Toast.LENGTH_SHORT).show();
+        Toast.makeText(FindActivity.this, currentBabyName.name+ " rated: "+score+ " (+"+rate+")", Toast.LENGTH_SHORT).show();
         project.setNeedToBeSaved(true);
     }
 
@@ -137,6 +140,7 @@ public class FindActivity extends AppCompatActivity {
 
         String newName = currentBabyName.name;
         nameText.setText(newName);
+        remainingText.setText(""+project.nexts.size()+" left.");
         rateBar.setRating(0);
     }
 

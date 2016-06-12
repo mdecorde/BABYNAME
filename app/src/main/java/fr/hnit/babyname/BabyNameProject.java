@@ -38,6 +38,7 @@ import java.util.regex.Pattern;
 public class BabyNameProject implements Serializable {
 
     protected boolean needSaving = false;
+    int loop = 0;
     protected String ID;
     protected HashSet<String> genders = new HashSet<>();
     protected HashSet<String> origins = new HashSet<>();
@@ -46,7 +47,7 @@ public class BabyNameProject implements Serializable {
     protected int max = 0;
     protected Integer iMax = null;
     protected Integer currentBabyNameIndex = -1;
-    protected ArrayList<Integer> nexts = new ArrayList<Integer>();
+    protected List<Integer> nexts = new ArrayList<Integer>();
 
     public BabyNameProject() {
         genders.add(NameData.M);
@@ -92,7 +93,9 @@ public class BabyNameProject implements Serializable {
         if (nexts.size() == 1) {
             l1 += "\n\tone remaining names to review";
         } else if (nexts.size() == 0) {
-            l1 += "\n\tno remaining names to review. Start a new review loop.";
+            int n = scores.size();
+            if (n > 11) n = n - 10;
+            l1 += "\n\tno remaining names to review. Start a new review loop with "+n+" names ?";
         } else {
             l1 += "\n\t"+nexts.size()+" remaining names to review";
         }
@@ -188,15 +191,31 @@ public class BabyNameProject implements Serializable {
 
     protected boolean rebuildNexts() {
         nexts.clear();
-        AppLogger.info("Build nexts name random list " + MainActivity.database.size());
-        for (int i = 1; i < MainActivity.database.size(); i++) {
-            if (isNameValid(MainActivity.database.get(i)))
-                nexts.add(i);
+
+        if (loop >= 1) { // uses score to get next names and remove worst scores
+            for (int k : scores.keySet()) nexts.add(k); // get all indices
+
+            if (nexts.size() > 11) {
+                Collections.sort(nexts, new Comparator<Integer>() {
+                    @Override
+                    public int compare(Integer i1, Integer i2) {
+                        return scores.get(i1) - scores.get(i2);
+                    }
+                });
+                nexts = nexts.subList(10, nexts.size()); // remove the 10 worst scores
+            }
+        } else { // first initialisation
+
+            AppLogger.info("Build nexts name random list " + MainActivity.database.size());
+            for (int i = 1; i < MainActivity.database.size(); i++) {
+                if (isNameValid(MainActivity.database.get(i)))
+                    nexts.add(i);
+            }
         }
 
         Collections.shuffle(nexts);
         AppLogger.info("nexts= " + nexts);
-
+        loop++;
         return nexts.size() > 0;
     }
 
