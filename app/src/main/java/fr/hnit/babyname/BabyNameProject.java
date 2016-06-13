@@ -95,7 +95,7 @@ public class BabyNameProject implements Serializable {
         } else if (nexts.size() == 0) {
             int n = scores.size();
             if (n > 11) n = n - 10;
-            l1 += "\n\tno remaining names to review. Start a new review loop with "+n+" names ?";
+            l1 += "\n\tno remaining names to review (loop="+loop+"). Start a new review loop with "+n+" names ?";
         } else {
             l1 += "\n\t"+nexts.size()+" remaining names to review";
         }
@@ -156,7 +156,7 @@ public class BabyNameProject implements Serializable {
 
     public boolean isNameValid(BabyName name) {
         //return true;
-        AppLogger.info("test gender " + name+" " + name.genres + " against project genres " + this.getGenders());
+        //AppLogger.info("test gender " + name+" " + name.genres + " against project genres " + this.getGenders());
         if (this.genders.size() > 0) {
             boolean genderIsOk = false;
             for (String genre : name.genres) {
@@ -168,7 +168,7 @@ public class BabyNameProject implements Serializable {
             if (!genderIsOk) return false;
         }
 
-        AppLogger.info("test origin " + name+" " + name.origins + " against project origins " + this.getOrigins());
+        //AppLogger.info("test origin " + name+" " + name.origins + " against project origins " + this.getOrigins());
         if (this.origins.size() > 0) {
             boolean originIsOk = false;
             for (String origin : name.origins) {
@@ -180,7 +180,7 @@ public class BabyNameProject implements Serializable {
             if (!originIsOk) return false;
         }
 
-        AppLogger.info("test pattern " + name+" " + name.name + " against pattern genres " + this.pattern);
+        //AppLogger.info("test pattern " + name+" " + name.name + " against pattern genres " + this.pattern);
         if (pattern != null) {
             return pattern.matcher(name.name).matches();
         }
@@ -193,6 +193,7 @@ public class BabyNameProject implements Serializable {
         nexts.clear();
 
         if (loop >= 1) { // uses score to get next names and remove worst scores
+
             for (int k : scores.keySet()) nexts.add(k); // get all indices
 
             if (nexts.size() > 11) {
@@ -202,11 +203,13 @@ public class BabyNameProject implements Serializable {
                         return scores.get(i1) - scores.get(i2);
                     }
                 });
+
+                for (int i : nexts.subList(0, 10)) { scores.remove(i); } // remove the scores as well
                 nexts = nexts.subList(10, nexts.size()); // remove the 10 worst scores
             }
         } else { // first initialisation
 
-            AppLogger.info("Build nexts name random list " + MainActivity.database.size());
+            //AppLogger.info("Build nexts name random list " + MainActivity.database.size());
             for (int i = 1; i < MainActivity.database.size(); i++) {
                 if (isNameValid(MainActivity.database.get(i)))
                     nexts.add(i);
@@ -214,7 +217,7 @@ public class BabyNameProject implements Serializable {
         }
 
         Collections.shuffle(nexts);
-        AppLogger.info("nexts= " + nexts);
+        //AppLogger.info("nexts ("+nexts.size()+")= " + nexts);
         loop++;
         return nexts.size() > 0;
     }
@@ -228,7 +231,7 @@ public class BabyNameProject implements Serializable {
         BabyName currentBabyName;
 
         int next = nexts.remove(0);
-        AppLogger.info("Next name index: " + next + " from " + MainActivity.database.size() + " choices.");
+        //AppLogger.info("Next name index: " + next + " from " + MainActivity.database.size() + " choices.");
         currentBabyName = MainActivity.database.get(next);
         if (currentBabyName == null) {
             if (nexts.size() == 0) {
@@ -236,8 +239,8 @@ public class BabyNameProject implements Serializable {
                 return null;
             }
         }
-        AppLogger.info("Next: " + currentBabyName);
-        AppLogger.info("Next name: " + currentBabyName.name);
+        //AppLogger.info("Next: " + currentBabyName);
+        //AppLogger.info("Next name: " + currentBabyName.name);
 
         currentBabyNameIndex = next;
         return currentBabyName;
@@ -274,26 +277,27 @@ public class BabyNameProject implements Serializable {
     }
 
     public void reset() {
+        this.nexts.clear();
         this.scores.clear();
         this.rebuildNexts();
         currentBabyNameIndex = -1;
+        loop = 0;
     }
 
     public List<Integer> getTop10() {
         List<Integer> names = new ArrayList<Integer>(this.scores.size());
         names.addAll(this.scores.keySet());
 
-        int min = Math.min(10, names.size());
-        names = names.subList(0, min);
-
-        AppLogger.info("names before sort: "+names+" scores: "+scores);
+        //AppLogger.info("names before sort: "+names+" scores: "+scores);
         Collections.sort(names, new Comparator<Integer>() {
             @Override
             public int compare(Integer b1, Integer b2) {
                 return BabyNameProject.this.scores.get(b2) - BabyNameProject.this.scores.get(b1);
             }
         });
-        AppLogger.info("names after sort: "+names);
+
+        //AppLogger.info("names after sort: "+names);
+        int min = Math.min(10, names.size());
         return names.subList(0, min);
     }
 }

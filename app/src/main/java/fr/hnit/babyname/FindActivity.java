@@ -125,7 +125,7 @@ public class FindActivity extends AppCompatActivity {
     }
 
     public void setProject(BabyNameProject project) {
-        AppLogger.info("Set project preferences: "+project);
+        //AppLogger.info("Set project preferences: "+project);
         this.project = project;
 
         if (project.currentBabyNameIndex == -1)

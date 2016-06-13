@@ -98,10 +98,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeProjects() {
-        AppLogger.info("Initializing projects...");
+        //AppLogger.info("Initializing projects...");
         for (String filename : this.fileList()) {
             if (filename.endsWith(".baby")) {
-                AppLogger.info("Restoring... "+filename);
+                //AppLogger.info("Restoring... "+filename);
                 try {
                     BabyNameProject project = BabyNameProject.readProject(filename, this);
                     if (project != null)
@@ -214,24 +214,41 @@ public class MainActivity extends AppCompatActivity {
         List<Integer> names = project.getTop10();
 
         StringBuffer buffer = new StringBuffer();
-        buffer.append("Top 10:");
+
         int n = 0;
         for (Integer name : names) {
             buffer.append("\n"+MainActivity.database.get(name)+": "+project.scores.get(name));
         }
 
-        Toast.makeText(this, buffer.toString(), Toast.LENGTH_LONG).show();
+        if (names.size() == 0) buffer.append("No name rated yet. Start by pressing the 'play' button.");
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Top 10 names!");
+        builder.setMessage(buffer.toString());
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+        //Toast.makeText(this, buffer.toString(), Toast.LENGTH_LONG).show();
     }
 
 
     public void doFindName(BabyNameProject project) {
-        AppLogger.info("Open FindActivity with "+project+" index="+projects.indexOf(project));
+        //AppLogger.info("Open FindActivity with "+project+" index="+projects.indexOf(project));
         findIntent.putExtra(FindActivity.PROJECT_EXTRA, projects.indexOf(project));
         this.startActivityForResult(findIntent, 0);
     }
 
     private void openEditActivity(BabyNameProject project) {
-        AppLogger.info("Open EditActivity with "+project+" index="+projects.indexOf(project));
+        //AppLogger.info("Open EditActivity with "+project+" index="+projects.indexOf(project));
         editIntent.putExtra(EditActivity.PROJECT_EXTRA, projects.indexOf(project));
         this.startActivityForResult(editIntent, 0);
     }

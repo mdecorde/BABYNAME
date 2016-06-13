@@ -81,7 +81,7 @@ public static final HashSet<String> allOrigins = new HashSet<String>();;
     }
 
     public void setProject(BabyNameProject project) {
-        AppLogger.info("Set project preferences: "+project);
+        //AppLogger.info("Set project preferences: "+project);
         this.project = project;
 
         if (project.getGenders().contains(NameData.F) && project.getGenders().contains(NameData.M)) {
@@ -170,13 +170,13 @@ public static final HashSet<String> allOrigins = new HashSet<String>();;
         Intent intent = null;
         switch (item.getItemId()) {
             case R.id.action_cancelsave_babyproject:
-                AppLogger.info("Cancel changes");
+                //AppLogger.info("Cancel changes");
                 project.setNeedToBeSaved(false);
                 MainActivity.projects.remove(project);
                 this.finish();
                 return true;
             case R.id.action_save_babyproject:
-                AppLogger.info("Save project");
+                //AppLogger.info("Save project");
                 if (registerProject()) {
                     this.finish();
                 }
