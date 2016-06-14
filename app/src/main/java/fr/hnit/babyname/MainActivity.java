@@ -17,6 +17,9 @@ Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
  */
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -201,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // I do not need any action here you might
                 dialog.dismiss();
             }
         });
@@ -213,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
     public void doShowTop10(final BabyNameProject project) {
         List<Integer> names = project.getTop10();
 
-        StringBuffer buffer = new StringBuffer();
+        final StringBuffer buffer = new StringBuffer();
 
         int n = 0;
         for (Integer name : names) {
@@ -233,7 +235,17 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        if (names.size() > 0)
+        builder.setNegativeButton("Copy", new DialogInterface.OnClickListener() {
 
+            public void onClick(DialogInterface dialog, int which) {
+                ClipboardManager clipboard = (ClipboardManager)
+                        getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("baby top10", buffer.toString());
+                clipboard.setPrimaryClip(clip);
+                dialog.dismiss();
+            }
+        });
         AlertDialog alert = builder.create();
         alert.show();
 
