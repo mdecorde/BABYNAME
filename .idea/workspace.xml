@@ -35,19 +35,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/star.png" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/star.png" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/drawable/star.png" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/drawable/star.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" afterPath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/EditActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/EditActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/FindActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/FindActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/.idea/workspace.xml" afterPath="/media/mdecorde/P1/projets/BABYNAME/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/app.iml" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/app.iml" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/EditActivity.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/EditActivity.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java" />
+      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/build.gradle" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/build/intermediates/dex-cache/cache.xml" afterPath="/media/mdecorde/P1/projets/BABYNAME/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="BABYNAME.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,31 +68,57 @@
       <file leaf-file-name="BabyNameProject.java" pinned="false" current-in-tab="false">
         <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.454545">
+            <state vertical-scroll-proportion="0.0">
               <caret line="276" column="5" selection-start-line="276" selection-start-column="5" selection-end-line="276" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6484375">
-              <caret line="226" column="38" selection-start-line="226" selection-start-column="38" selection-end-line="226" selection-end-column="38" />
+            <state vertical-scroll-proportion="-7.5151515">
+              <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5353#5382#0" expanded="true" />
-                <element signature="e#5412#5443#0" expanded="true" />
-                <element signature="e#5488#5985#0" expanded="true" />
-                <element signature="e#5984#5985#0" expanded="true" />
-                <element signature="e#6029#6276#0" expanded="true" />
-                <element signature="e#6275#6276#0" expanded="true" />
-                <element signature="e#6515#6545#0" expanded="true" />
-                <element signature="e#6575#6607#0" expanded="true" />
-                <element signature="e#7983#8150#0" expanded="true" />
-                <element signature="e#8149#8150#0" expanded="true" />
+                <element signature="e#5459#5488#0" expanded="true" />
+                <element signature="e#5518#5549#0" expanded="true" />
+                <element signature="e#6621#6651#0" expanded="true" />
+                <element signature="e#6681#6713#0" expanded="true" />
+                <element signature="e#7131#7319#0" expanded="true" />
+                <element signature="e#7318#7319#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.25">
+              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2795031">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.5">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1426,7 +1449,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4395879560956" />
+        <entry key="$PROJECT_DIR$" value="4396695583887" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1701,7 +1724,6 @@
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/com/hnit/babyname/AboutActivity.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/androidTest/java/com/hnit/babyname/ApplicationTest.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/test/java/com/hnit/babyname/ExampleUnitTest.java" />
-        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/SettingsFragment.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/AboutActivity.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameAdapter.java" />
@@ -1713,7 +1735,10 @@
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/EditActivity.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/layout/activity_edit.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1748,8 +1773,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BABYNAME" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1772,51 +1808,8 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BABYNAME" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BABYNAME" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babyname" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BABYNAME" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2105,6 +2098,13 @@
       <option name="number" value="Default" />
       <updated>1465143110916</updated>
     </task>
+    <task id="LOCAL-00001" summary="export top10">
+      <created>1465931956347</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1465931956347</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2116,8 +2116,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298292" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41655716" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41655716" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2131,12 +2130,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981578" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20265292" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298292" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298292" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2137067" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298292" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -2152,11 +2152,39 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="export top10" />
+    <option name="LAST_COMMIT_MESSAGE" value="export top10" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="276" column="5" selection-start-line="276" selection-start-column="5" selection-end-line="276" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5459#5488#0" expanded="true" />
+            <element signature="e#5518#5549#0" expanded="true" />
+            <element signature="e#6621#6651#0" expanded="true" />
+            <element signature="e#6681#6713#0" expanded="true" />
+            <element signature="e#7131#7319#0" expanded="true" />
+            <element signature="e#7318#7319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2193,7 +2221,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5459#5488#0" expanded="true" />
+            <element signature="e#5518#5549#0" expanded="true" />
+            <element signature="e#6621#6651#0" expanded="true" />
+            <element signature="e#6681#6713#0" expanded="true" />
+            <element signature="e#7131#7319#0" expanded="true" />
+            <element signature="e#7318#7319#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2274,7 +2310,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5459#5488#0" expanded="true" />
+            <element signature="e#5518#5549#0" expanded="true" />
+            <element signature="e#6621#6651#0" expanded="true" />
+            <element signature="e#6681#6713#0" expanded="true" />
+            <element signature="e#7131#7319#0" expanded="true" />
+            <element signature="e#7318#7319#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2356,14 +2400,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/SettingsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2400,14 +2436,14 @@
       </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/layout/activity_find.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31322506">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java">
@@ -2421,14 +2457,14 @@
       </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/layout/row.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/menu/main.xml">
@@ -2476,41 +2512,66 @@
       </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/layout/activity_edit.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.7146173">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.454545">
+        <state vertical-scroll-proportion="0.0">
           <caret line="276" column="5" selection-start-line="276" selection-start-column="5" selection-end-line="276" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="android-dummy:///home/mdecorde/projets/BABYNAME/app/Translations Editor">
+      <provider selected="true" editor-type-id="string-resource-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6484375">
-          <caret line="226" column="38" selection-start-line="226" selection-start-column="38" selection-end-line="226" selection-end-column="38" />
+        <state vertical-scroll-proportion="-7.5151515">
+          <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5353#5382#0" expanded="true" />
-            <element signature="e#5412#5443#0" expanded="true" />
-            <element signature="e#5488#5985#0" expanded="true" />
-            <element signature="e#5984#5985#0" expanded="true" />
-            <element signature="e#6029#6276#0" expanded="true" />
-            <element signature="e#6275#6276#0" expanded="true" />
-            <element signature="e#6515#6545#0" expanded="true" />
-            <element signature="e#6575#6607#0" expanded="true" />
-            <element signature="e#7983#8150#0" expanded="true" />
-            <element signature="e#8149#8150#0" expanded="true" />
+            <element signature="e#5459#5488#0" expanded="true" />
+            <element signature="e#5518#5549#0" expanded="true" />
+            <element signature="e#6621#6651#0" expanded="true" />
+            <element signature="e#6681#6713#0" expanded="true" />
+            <element signature="e#7131#7319#0" expanded="true" />
+            <element signature="e#7318#7319#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2795031">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
