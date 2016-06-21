@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.reset_question_title);
         builder.setMessage(R.string.reset_question_content);
 
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 project.reset();
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // I do not need any action here you might
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.delete_question_title);
         builder.setMessage(R.string.delete_question_content);
 
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 projects.remove(project);
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -210,6 +210,51 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+
+    public String projectToString(BabyNameProject p) {
+
+        String l1 = "";
+        if (p.genders.contains(NameData.F) && p.genders.contains(NameData.M)) {
+            l1 += getString(R.string.boy_or_girl_name);
+        } else if (p.genders.contains(NameData.M)) {
+            l1 += getString(R.string.boy_name);
+        } else {
+            l1 +=getString( R.string.girl_name);
+        }
+
+        if (p.origins.size() == 1) {
+            l1 += "\n\t "+String.format(getString(R.string.origin_is), p.origins.toArray()[0]);
+        } else if (p.origins.size() > 1) {
+            l1 += "\n\t "+String.format(getString(R.string.origin_are), p.origins);
+        } else {
+            l1 += "\n\t "+getString(R.string.no_origin);
+        }
+
+        if (p.pattern != null) {
+            if (".*".equals(p.pattern.toString())) {
+                l1 += "\n\t "+getString(R.string.no_pattern);
+            } else {
+                l1 += "\n\t "+String.format(getString(R.string.matches_with), p.pattern);
+            }
+        }
+
+        if (p.nexts.size() == 1) {
+            l1 += "\n\t"+getString(R.string.one_remaining_name);
+        } else if (p.nexts.size() == 0) {
+            int n = p.scores.size();
+            if (n > 11) n = n - 10;
+            l1 += "\n\t"+String.format(getString(R.string.no_remaining_loop), p.loop, n);
+        } else {
+            l1 += "\n\t"+String.format(getString(R.string.remaining_names), p.nexts.size());
+        }
+
+        if (p.scores.size() > 0 && p.getBest() != null) {
+            l1 += "\n\n\t"+String.format(getString(R.string.bact_match_is), p.getBest());
+        }
+
+        return l1;
     }
 
     public void doShowTop10(final BabyNameProject project) {
@@ -222,28 +267,28 @@ public class MainActivity extends AppCompatActivity {
             buffer.append("\n"+MainActivity.database.get(name)+": "+project.scores.get(name));
         }
 
-        if (names.size() == 0) buffer.append("No name rated yet. Start by pressing the 'play' button.");
+        if (names.size() == 0) buffer.append(getString(R.string.no_name_rated));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Top 10 names!");
+        builder.setTitle(R.string.top_title);
         builder.setMessage(buffer.toString());
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
         if (names.size() > 0)
-        builder.setNegativeButton("Copy", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.copy, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 ClipboardManager clipboard = (ClipboardManager)
                         getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("baby top10", buffer.toString());
                 clipboard.setPrimaryClip(clip);
-                dialog.dismiss();
+                Toast.makeText(MainActivity.this, R.string.text_copied, Toast.LENGTH_LONG).show();
             }
         });
         AlertDialog alert = builder.create();
@@ -290,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doNewBaby() {
-        Toast.makeText(this, "New baby! \\o/", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.new_baby, Toast.LENGTH_LONG).show();
         BabyNameProject project = new BabyNameProject();
         projects.add(project);
         openEditActivity(project);

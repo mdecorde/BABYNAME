@@ -86,7 +86,7 @@ public class BabyNameAdapter extends ArrayAdapter<BabyNameProject> {
         });
 
         // 4. Set the text for textView
-        text.setText(project.toString());
+        text.setText(context.projectToString(project));
 
         // 5. return rowView
         return rowView;

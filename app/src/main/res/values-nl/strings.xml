@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BabyName</string>
     <string name="action_new_baby">New</string>
@@ -38,13 +39,12 @@
     <string name="boy_name">A boy which name</string>
     <string name="girl_name">A girl which name</string>
     <string name="no_origin">has no specific origin</string>
-    <string name="no_pattern">has no specific pattern</string>
     <string formatted="false" name="origin_is">origin is \'%s\'</string>
     <string name="one_remaining_name">One remaining names to review</string>
     <string formatted="false" name="origin_are">origins are %s</string>
     <string formatted="false" name="matches_with">matches with \'%s\'</string>
     <string formatted="false" name="no_remaining_loop">No remaining names to review (loop=%d). Start a new review loop with %d names ?</string>
-    <string formatted="false" name="remaining_names">%d remaining names to review</string>
+    <string name="remaining_names">%d remaining names to review</string>
     <string formatted="false" name="bact_match_is">Best match is \'%s\'</string>
     <string formatted="false" name="name_pattern_malformed">Name pattern is malformed : \n%s</string>
     <string name="too_much_constraint">Too much name constraint, no name found</string>

@@ -88,7 +88,7 @@ public class FindActivity extends AppCompatActivity {
             if (index >= 0 && MainActivity.projects.size() > index) {
                 BabyNameProject project = MainActivity.projects.get(index);
                 if (project.nexts.size() == 0) {
-                    Toast.makeText(FindActivity.this, "Starting a new review loop!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(FindActivity.this, R.string.starting_new_loop, Toast.LENGTH_LONG).show();
                     project.rebuildNexts();
                     project.setNeedToBeSaved(true);
                 }
@@ -103,7 +103,7 @@ public class FindActivity extends AppCompatActivity {
         currentBabyName = project.nextName();
         if (currentBabyName == null) {
             AppLogger.error("No current baby name found: "+project);
-            Toast.makeText(FindActivity.this, "All names have been reviewed !", Toast.LENGTH_LONG).show();
+            Toast.makeText(FindActivity.this, getString(R.string.all_names_reviewed), Toast.LENGTH_LONG).show();
             FindActivity.this.finish();
         } else {
             String newName = currentBabyName.name;
@@ -116,7 +116,7 @@ public class FindActivity extends AppCompatActivity {
     protected void saveRate() {
         int rate = (int)rateBar.getRating();
         int score = project.evaluate(currentBabyName, rate);
-        Toast.makeText(FindActivity.this, currentBabyName.name+ " rated: "+score+ " (+"+rate+")", Toast.LENGTH_SHORT).show();
+        Toast.makeText(FindActivity.this, String.format(getString(R.string.name_rated_score), currentBabyName.name, score, rate), Toast.LENGTH_SHORT).show();
         project.setNeedToBeSaved(true);
     }
 
@@ -140,7 +140,8 @@ public class FindActivity extends AppCompatActivity {
 
         String newName = currentBabyName.name;
         nameText.setText(newName);
-        remainingText.setText(""+project.nexts.size()+" left.");
+
+        remainingText.setText(String.format(getString(R.string.n_name_left), project.nexts.size()));
         rateBar.setRating(0);
     }
 

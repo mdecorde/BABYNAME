@@ -64,49 +64,6 @@ public class BabyNameProject implements Serializable {
         needSaving = s;
     }
 
-    public String toString() {
-        String l1 = "A ";
-        if (genders.contains(NameData.F) && genders.contains(NameData.M)) {
-            l1 += "boy or a girl which name";
-        } else if (genders.contains(NameData.M)) {
-            l1 += "boy which name";
-        } else {
-            l1 += "girl which name";
-        }
-
-        if (origins.size() == 1) {
-            l1 += "\n\t origin is '" + origins.toArray()[0] + "'";
-        } else if (origins.size() > 1) {
-            l1 += "\n\t origins are " + origins;
-        } else {
-            l1 += "\n\t has no specific origin";
-        }
-
-        if (pattern != null) {
-            if (".*".equals(pattern.toString())) {
-                l1 += "\n\t has no specific pattern";
-            } else {
-                l1 += "\n\t matches with '" + pattern + "'";
-            }
-        }
-
-        if (nexts.size() == 1) {
-            l1 += "\n\tone remaining names to review";
-        } else if (nexts.size() == 0) {
-            int n = scores.size();
-            if (n > 11) n = n - 10;
-            l1 += "\n\tno remaining names to review (loop="+loop+"). Start a new review loop with "+n+" names ?";
-        } else {
-            l1 += "\n\t"+nexts.size()+" remaining names to review";
-        }
-
-        if (scores.size() > 0 && getBest() != null) {
-            l1 += "\n\n\tBest match is '" + getBest() + "'";
-        }
-
-        return l1;
-    }
-
     public int evaluate(BabyName babyname, int score) {
         if (!scores.containsKey(babyname.id)) {
             scores.put(babyname.id, 0);
@@ -204,8 +161,10 @@ public class BabyNameProject implements Serializable {
                     }
                 });
 
-                for (int i : nexts.subList(0, 10)) { scores.remove(i); } // remove the scores as well
-                nexts = nexts.subList(10, nexts.size()); // remove the 10 worst scores
+                int amountToRemove = Math.min(10, nexts.size() - 10);
+
+                for (int i : nexts.subList(0, amountToRemove)) { scores.remove(i); } // remove the scores as well
+                nexts = nexts.subList(amountToRemove, nexts.size()); // remove the 10 worst scores
             }
         } else { // first initialisation
 
@@ -301,4 +260,3 @@ public class BabyNameProject implements Serializable {
         return names.subList(0, min);
     }
 }
-

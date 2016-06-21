@@ -142,16 +142,16 @@ public static final HashSet<String> allOrigins = new HashSet<String>();;
             Pattern newPattern = Pattern.compile(patternText.getText().toString().trim());
             project.setPattern(newPattern);
         } catch (PatternSyntaxException e) {
-            Toast.makeText(this, "Name pattern is malformed : \n"+e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, String.format(getString(R.string.name_pattern_malformed), e.getMessage()), Toast.LENGTH_LONG).show();
             return false;
         }
 
         if (!project.rebuildNexts()) {
-            Toast.makeText(EditActivity.this, "Too much name constraint, no name found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditActivity.this, R.string.too_much_constraint, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        Toast.makeText(EditActivity.this, "Project set, "+project.nexts.size()+" names to review !", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(EditActivity.this, "Project set, "+project.nexts.size()+" names to review !", Toast.LENGTH_SHORT).show();
 
         project.setNeedToBeSaved(true);
 
