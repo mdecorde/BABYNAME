@@ -28,7 +28,6 @@
   <component name="ChangeListManager">
     <list default="true" id="72f26eed-bd2d-43fe-a791-81ae29f359ec" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-nl/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-nl/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
@@ -46,15 +45,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/fr/hnit/babyname/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/.idea/workspace.xml" afterPath="/media/mdecorde/P1/projets/BABYNAME/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/app.iml" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/app.iml" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameAdapter.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameAdapter.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/EditActivity.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/EditActivity.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml" afterPath="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="/media/mdecorde/P1/projets/BABYNAME/build/intermediates/dex-cache/cache.xml" afterPath="/media/mdecorde/P1/projets/BABYNAME/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="BABYNAME.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,8 +68,38 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-nl/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.9">
-              <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="66" />
+            <state vertical-scroll-proportion="-0.74">
+              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/mdecorde/P1/projets/BABYNAME/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.9230769">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+        <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.20435968">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -100,8 +120,8 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-fr/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.373494">
-              <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+            <state vertical-scroll-proportion="-1.6746988">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -110,18 +130,18 @@
       <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.48">
-              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+            <state vertical-scroll-proportion="-2.98">
+              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FindActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FindActivity.java" pinned="false" current-in-tab="false">
         <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5731415">
-              <caret line="124" column="5" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3211#3237#0" expanded="true" />
@@ -1748,19 +1768,19 @@
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/layout/row.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/menu/main.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/layout/activity_edit.xml" />
-        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml" />
-        <option value="/media/mdecorde/P1/projets/BABYNAME/app/build.gradle" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameAdapter.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/EditActivity.java" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/build/intermediates/res/merged/debug/values-nl/values-nl.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/build/intermediates/res/merged/debug/values/values.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java" />
-        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-nl/strings.xml" />
-        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/build/intermediates/res/merged/debug/values-fr/values-fr.xml" />
-        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-fr/strings.xml" />
         <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-fr/strings.xml" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-nl/strings.xml" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/build.gradle" />
+        <option value="/media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1913,22 +1933,8 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babyname" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BABYNAME" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2505,13 +2511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.621118">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/androidTest/java/fr/hnit/babyname/ApplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2609,21 +2608,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22479564">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02112676">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/BabyNameProject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2712,14 +2696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-nl/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.9">
-          <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2727,14 +2703,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.48">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2746,18 +2714,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-fr/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.373494">
-          <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/java/fr/hnit/babyname/FindActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5731415">
-          <caret line="124" column="5" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3211#3237#0" expanded="true" />
@@ -2765,6 +2725,54 @@
             <element signature="e#4263#4299#0" expanded="true" />
             <element signature="e#5074#5105#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-fr/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6746988">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.98">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/res/values-nl/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.74">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/mdecorde/P1/projets/BABYNAME/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20435968">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
