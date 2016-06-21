@@ -21,8 +21,8 @@
     <string name="reset">Remise à zéro</string>
     <string name="delete">Effacer</string>
     <string name="top">Top 10 !</string>
-    <string name="pattern_help">Le motif est une expression rationnelle. Par exemple, \n - \'.....+\' trouve les noms faisant plus de 4 lettres, \n - \'R...+\' trouve les noms commençant par la lettre \'R\' et faisant plus de 3 lettres, \n - \'.+r\' trouve les noms qui finissent par la lettre \'r\'.\n\nPlus d'informations à https://developer.android.com/reference/java/util/regex/Pattern.html</string>
-    <string name="about">BabyName v0.4\n\nCette application permet de trouve un nom pour son futur bébé parmis un lexique de plus de 10000 prénoms organisés par genre et origine (produit par Mike Campbell et Boris New, voir http://www.lexique.org/public/prenoms.php).\n\nCette application est entierement libre, pour toute suggestion ou demande d'aide, veuillez vous rendre sur https://github.com/mdecorde/BABYNAME</string>
+    <string name="pattern_help">Le motif est une expression rationnelle. Par exemple, \n - \'.....+\' trouve les noms faisant plus de 4 lettres, \n - \'R...+\' trouve les noms commençant par la lettre \'R\' et faisant plus de 3 lettres, \n - \'.+r\' trouve les noms qui finissent par la lettre \'r\'.\n\nPlus d\'informations à https://developer.android.com/reference/java/util/regex/Pattern.html</string>
+    <string name="about">BabyName v0.4\n\nCette application permet de trouve un nom pour son futur bébé parmis un lexique de plus de 10000 prénoms organisés par genre et origine (produit par Mike Campbell et Boris New, voir http://www.lexique.org/public/prenoms.php).\n\nCette application est entierement libre, pour toute suggestion ou demande d\'aide, veuillez vous rendre sur https://github.com/mdecorde/BABYNAME</string>
     <string name="delete_question_content">Voulez vous vraiment vraimen vraiment supprimer le projet ?</string>
     <string name="delete_question_title">Supprimer le projet babyname</string>
     <string name="reset_question_title">Remise à zéro des scores</string>
