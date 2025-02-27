@@ -21,7 +21,8 @@ import android.util.Log;
 /**
  * Created by mdecorde on 16/05/16.
  */
-public class AppLogger {
+public class AppLogger
+{
     public static final String LOG = "fr.hnit.babyname";
 
     public static void error(String message) {

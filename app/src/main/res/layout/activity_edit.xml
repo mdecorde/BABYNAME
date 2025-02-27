@@ -1,158 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="fr.hnit.babyname.EditActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/edit_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:focusableInTouchMode="true"
-        android:focusable="true" />
+    android:orientation="vertical"
+    tools:context=".EditActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/editText2">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText3"
-                android:text="@string/genre"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/editText2"
-                android:layout_toStartOf="@+id/editText2"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:singleLine="true"
-                android:elegantTextHeight="false"
-                android:ellipsize="none" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/boy_radio"
-                android:layout_alignEnd="@+id/boy_radio"
-                android:layout_toRightOf="@+id/space2"
-                android:layout_toEndOf="@+id/space2"
-                android:id="@+id/radioGroup"
-                android:layout_alignTop="@+id/editText3">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/girl"
-                    android:id="@+id/girl_radio"
-                    android:checked="false" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/boy"
-                    android:id="@+id/boy_radio"
-                    android:checked="false" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/both"
-                    android:id="@+id/both_radio"
-                    android:checked="false" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText4"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="@string/origins"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:singleLine="true"
-                android:layout_alignRight="@+id/space2"
-                android:layout_alignEnd="@+id/space2"
-                android:layout_below="@+id/radioGroup" />
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/origins_list"
-                android:choiceMode="multipleChoice"
-                android:clickable="false"
-                android:layout_toRightOf="@+id/space2"
-                android:layout_toEndOf="@+id/space2"
-                android:layout_above="@+id/editText5"
-                android:layout_below="@+id/radioGroup"
-                android:focusable="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText5"
-                android:text="@string/pattern"
-                android:layout_below="@+id/space"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:singleLine="true"
-                android:layout_alignRight="@+id/space2"
-                android:layout_alignEnd="@+id/space2" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/pattern_text"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:text=".*"
-                android:layout_below="@+id/origins_list"
-                android:layout_toRightOf="@+id/space2"
-                android:layout_toEndOf="@+id/space2" />
-        </LinearLayout>
-
-        <ScrollView
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/scrollView">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/edit_title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:singleLine="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/pattern_help"
-                android:id="@+id/textView"
-                android:autoLink="web" />
-        </ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:autofillHints="none"
+            android:id="@+id/counter_text"
+            android:singleLine="true" />
+
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/genre"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:singleLine="true"
+            android:ellipsize="none" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gender_radio"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boy"
+                android:id="@+id/boy_radio"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/girl"
+                android:id="@+id/girl_radio"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all"
+                android:id="@+id/all_radio"
+                android:checked="false" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/pattern"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:singleLine="true"  />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pattern_text"
+            android:background="#D9D9D9"
+            android:text=".*"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="@string/origins"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:singleLine="true" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/origins_list"
+            android:clickable="false"
+            android:focusable="false" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/pattern_help"
+            android:id="@+id/textView"
+            android:autoLink="web" />
+    </ScrollView>
+
+</LinearLayout>

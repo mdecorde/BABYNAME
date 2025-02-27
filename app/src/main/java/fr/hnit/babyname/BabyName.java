@@ -22,9 +22,9 @@ import java.util.HashSet;
 /**
  * Created by mdecorde on 16/05/16.
  */
-public class BabyName implements Serializable {
-
-    protected static Integer nextId = 0;
+public class BabyName implements Serializable
+{
+    private static Integer nextId = 0;
     protected Integer id;
     protected String name;
     protected HashSet<String> genres = new HashSet<>();
@@ -35,16 +35,5 @@ public class BabyName implements Serializable {
         this.genres = genres;
         this.origins = origins;
         this.id = nextId++;
-    }
-
-    public BabyName(String name, String genre, String origin) {
-        this.name = name;
-        this.genres.add(genre);
-        this.origins.add(origin);
-        this.id = nextId++;
-    }
-
-    public String toString() {
-        return ""+name;
     }
 }
