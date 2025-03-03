@@ -1,4 +1,9 @@
-package fr.hnit.babyname;
+package fr.hnit.babyname
+
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
+
 /*
 The babyname app is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public
@@ -15,25 +20,14 @@ details.
 You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
- */
-import android.util.Log;
+*/
 
-/**
- * Created by mdecorde on 16/05/16.
- */
-public class AppLogger
-{
-    public static final String LOG = "fr.hnit.babyname";
+class AboutActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_about)
 
-    public static void error(String message) {
-        Log.e(LOG, message);
-    }
-
-    public static void warning(String message) {
-        Log.w(LOG, message);
-    }
-
-    public static void info(String message) {
-        Log.i(LOG, message);
+        val v = findViewById<TextView>(R.id.about_text)
+        v.text = String.format(getString(R.string.about), BuildConfig.VERSION_NAME)
     }
 }

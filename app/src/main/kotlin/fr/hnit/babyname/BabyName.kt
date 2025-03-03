@@ -1,4 +1,7 @@
-package fr.hnit.babyname;
+package fr.hnit.babyname
+
+import java.io.Serializable
+
 /*
 The babyname app is free software: you can redistribute it
 and/or modify it under the terms of the GNU General Public
@@ -15,22 +18,20 @@ details.
 You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
- */
-import android.os.Bundle;
-import android.preference.PreferenceActivity;
+*/
 
-/**
- * Created by mdecorde on 15/05/16.
- */
-public class SettingsActivity extends PreferenceActivity
-{
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+class BabyName(var name: String, genres: HashSet<String>, origins: HashSet<String>) : Serializable {
+    var id: Int
+    var genres: HashSet<String> = HashSet()
+    var origins: HashSet<String> = HashSet()
 
-        // Display the fragment as the main content.
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+    init {
+        this.genres = genres
+        this.origins = origins
+        this.id = nextId++
+    }
+
+    companion object {
+        private var nextId = 0
     }
 }
