@@ -30,17 +30,18 @@ http://www.gnu.org/licenses
 */
 
 class BabyNameProject : Serializable {
-    var needSaving: Boolean = false
-    var loop: Int = 0
+    var needSaving = false
+    var loop = 0
     var iD: String
     var genders = HashSet<String>()
     var origins = HashSet<String>()
     var pattern: Pattern?
     var scores = HashMap<Int, Int>()
-    var max: Int = 0
-    private var iMax: Int? = null
-    var currentBabyNameIndex: Int = -1
+    private var bestScore = 0
+    private var bestScoreIndex: Int? = null
+    private var currentBabyNameIndex = 0
     var nexts = mutableListOf<Int>()
+    var nextsIndex = 0
 
     init {
         genders.add(BabyNameDatabase.GENDER_MALE)
@@ -49,33 +50,43 @@ class BabyNameProject : Serializable {
         iD = UUID.randomUUID().toString()
     }
 
-    fun setNeedToBeSaved(s: Boolean) {
-        needSaving = s
+    fun setNeedToBeSaved(save: Boolean) {
+        needSaving = save
     }
 
-    fun evaluate(babyname: BabyName, score: Int): Int {
-        var score = score
+    fun evaluateScore(babyname: BabyName, newScore: Int): Boolean {
+        if (newScore > bestScore) {
+            // update best match
+            bestScore = newScore
+            bestScoreIndex = babyname.id
+        }
+
         if (!scores.containsKey(babyname.id)) {
             scores[babyname.id] = 0
         }
-        score += scores[babyname.id]!!
-        if (score > max) { // update best match
-            max = score
-            iMax = babyname.id
+
+        val currentScore = scores[babyname.id]!!
+        if (currentScore != newScore) {
+            scores[babyname.id] = newScore
+            return true
+        } else {
+            return false
         }
-        scores[babyname.id] = score
-        return score
     }
 
      /**
      * @return best baby name match, may be null
      */
     fun getBest(): BabyName? {
-        val index = iMax ?: return null
-         return MainActivity.database.get(index)
+        val index = bestScoreIndex ?: return null
+        return MainActivity.database.get(index)
     }
 
-    fun isNameValid(name: BabyName): Boolean {
+    fun isNameValid(name: BabyName?): Boolean {
+        if (name == null) {
+            return false
+        }
+
         //Log.d("test gender " + name+" " + name.genres + " against project genres " + this.getGenders());
         if (genders.isNotEmpty()) {
             var genderIsOk = false
@@ -85,7 +96,9 @@ class BabyNameProject : Serializable {
                     continue
                 }
             }
-            if (!genderIsOk) return false
+            if (!genderIsOk) {
+                return false
+            }
         }
 
         //Log.d("test origin " + name+" " + name.origins + " against project origins " + this.getOrigins());
@@ -97,7 +110,9 @@ class BabyNameProject : Serializable {
                     continue
                 }
             }
-            if (!originIsOk) return false
+            if (!originIsOk) {
+                return false
+            }
         }
 
         //Log.d("test pattern " + name+" " + name.name + " against pattern genres " + this.pattern);
@@ -107,61 +122,85 @@ class BabyNameProject : Serializable {
         return true
     }
 
-    fun rebuildNexts(): Boolean {
+    fun nextLoop(): Boolean {
         nexts.clear()
 
-        if (loop >= 1) { // uses score to get next names and remove worst scores
-            // get all indices
+        if (loop >= 1) {
+            // add all names that were looked at
             nexts.addAll(scores.keys.toList())
 
-            if (nexts.size > 11) {
+            if (nexts.size > 10) {
+                // sort by score, lowest scores first
                 nexts.sortWith { i1: Int, i2: Int -> scores[i1]!! - scores[i2]!! }
 
-                val amountToRemove =
-                    min(10.0, (nexts.size - 10).toDouble()).toInt()
+                // remove worst 10%
+                val amountToRemove = (nexts.size / 10).toInt()
 
+                // remove the 10 worst scores
                 for (i in nexts.subList(0, amountToRemove)) {
-                    scores.remove(i) // remove the scores as well
+                    scores.remove(i)
                 }
-                nexts = nexts.subList(amountToRemove, nexts.size) // remove the 10 worst scores
+                nexts = nexts.subList(amountToRemove, nexts.size)
             }
-        } else { // first initialisation
-            //Log.d("Build nexts name random list " + MainActivity.database.size());
-            for (i in 1 until MainActivity.database.size()) {
-                if (isNameValid(MainActivity.database.get(i)!!)) {
+        } else {
+            // first initialisation - add all valid names
+            for (i in 0 until MainActivity.database.size()) {
+                if (isNameValid(MainActivity.database.get(i))) {
                     nexts.add(i)
                 }
             }
         }
 
         nexts.shuffle()
-        //Log.d("nexts ("+nexts.size()+")= " + nexts);
-        loop++
+
+        loop += 1
+        nextsIndex = 0
+        currentBabyNameIndex = 0
+
+        setNeedToBeSaved(true)
+
         return nexts.isNotEmpty()
     }
 
-    fun nextName(): BabyName? {
-        if (nexts.isEmpty()) {
-            currentBabyNameIndex = -1
+    fun currentName(): BabyName? {
+        Log.d(this, "currentName() currentBabyNameIndex: ${currentBabyNameIndex}")
+        if (currentBabyNameIndex >= 0 && currentBabyNameIndex < MainActivity.database.size()) {
+            return MainActivity.database.get(currentBabyNameIndex)
+        } else {
             return null
         }
+    }
 
-        val next = nexts.removeAt(0)
-        //Log.d("Next name index: " + next + " from " + MainActivity.database.size() + " choices.");
-        val currentBabyName = MainActivity.database.get(next)
+    fun previousName(): BabyName? {
+        Log.d(this, "previousName() nextsIndex: ${nextsIndex}")
+        if (nextsIndex > 0 && nextsIndex <= nexts.size) {
+            nextsIndex -= 1
+            currentBabyNameIndex = nexts[nextsIndex]
+            return MainActivity.database.get(currentBabyNameIndex)
+        } else {
+            //currentBabyNameIndex = 0
+            //nextsIndex = 0;
+            return null
+        }
+    }
 
-        //Log.d("Next: " + currentBabyName);
-        //Log.d("Next name: " + currentBabyName.name);
-        currentBabyNameIndex = next
-        return currentBabyName
+    fun nextName(): BabyName? {
+        Log.d(this, "nextName() nextsIndex: ${nextsIndex}")
+        if (nextsIndex >= -1 && (nextsIndex + 1) < nexts.size) {
+            nextsIndex += 1
+            currentBabyNameIndex = nexts[nextsIndex]
+            return MainActivity.database.get(currentBabyNameIndex)
+        } else {
+            //currentBabyNameIndex = 0
+            //nextsIndex = 0;
+            return null
+        }
     }
 
     fun reset() {
-        nexts.clear()
         scores.clear()
-        this.rebuildNexts()
-        currentBabyNameIndex = -1
         loop = 0
+        nextLoop()
     }
 
     fun getTop10(): List<Int> {
@@ -171,7 +210,7 @@ class BabyNameProject : Serializable {
         names.sortWith { b1: Int, b2: Int -> scores[b2]!! - scores[b1]!! }
 
         //Log.d("names after sort: "+names);
-        val min = min(10.0, names.size.toDouble()).toInt()
+        val min = min(10, names.size)
         return names.subList(0, min)
     }
 
@@ -209,7 +248,7 @@ class BabyNameProject : Serializable {
 
                 project.setNeedToBeSaved(false)
             } catch (e: Exception) {
-                AppLogger.e(this, "Cannot open $fileName")
+                Log.e(this, "Cannot open $fileName")
                 e.printStackTrace()
                 return false
             }

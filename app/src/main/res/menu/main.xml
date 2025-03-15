@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/action_about"
-        android:title="@string/aboutbutton"
+        android:title="@string/about_button"
         android:icon="@drawable/information"
         app:showAsAction="ifRoom"/>
 </menu>
