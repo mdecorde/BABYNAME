@@ -3,13 +3,13 @@
     <string formatted="false" name="matches_with">matches with \'%s\'.</string>
     <string formatted="false" name="n_name_left">%d left.</string>
     <string formatted="false" name="name_pattern_malformed">Name pattern is malformed : \n%s</string>
-    <string formatted="false" name="name_rated_score">%s rated: %d (+%d)</string>
+    <string formatted="false" name="name_rated_score">%s rated: %d</string>
     <string formatted="false" name="no_remaining_loop">No remaining names to review (loop=%d). Start a new review loop with %d names?</string>
     <string formatted="false" name="origin_are">origins are %s</string>
     <string formatted="false" name="origin_is">origin is \'%s\'</string>
     <string formatted="false" name="remaining_names">%d remaining names to review.</string>
     <string name="about">BabyName %s\n\nThis application allow you to find out which is your favorite baby name from a collection of +10000 names lexicon arranged by genre and origin (produced by Mike Campbell and Boris New see http://www.lexique.org/public/prenoms.php).\n\nTo create a new babyname project press the New Button.\n\nThen youll be asked to set of various name preferences such as gender, name origin and pattern (e.g. longer than, starting with T, etc.).\n\n\tTo start rating names press the play button, \n\tTo see the best rated names press the medal button,\n\tTo reset scores press the medal + minus button.\n\tTo delete a project press the evil cross button.\n\nWhen you have rated all names you will be proposed to start a new loop without the 10 less good rated names.\n\n Icons originally created by famfamfam http://famfamfam.com.\n\nThis application is entirely open-source any suggestion, help or question is welcomed, please go to https://github.com/mdecorde/BABYNAME</string>
-    <string name="aboutbutton">About</string>
+    <string name="about_button">About</string>
     <string name="action_cancelsave_babyproject">Cancel</string>
     <string name="action_delete_baby">Delete</string>
     <string name="action_dig_baby">Find name...</string>
@@ -29,6 +29,8 @@
     <string name="delete_question_content">Do you really really really want to delete this babyname project?</string>
     <string name="delete_question_title">Delete babyname project</string>
     <string name="edit_title">Baby Name Preferences</string>
+    <string name="finish_loop_tile">Finish Loop</string>
+    <string name="finish_review_question">Finish the current review loop?</string>
     <string name="genre">Gender:</string>
     <string name="girl">Girl</string>
     <string name="girl_name">A girl which name</string>
@@ -42,10 +44,11 @@
     <string name="no_origin">has no specific origin</string>
     <string name="no_pattern">has no specific pattern.</string>
     <string name="ok">OK</string>
-    <string name="one_remaining_name">One remaining names to review</string>
+    <string name="one_remaining_name">One remaining name to review</string>
     <string name="origins">Origins:</string>
     <string name="pattern">Pattern:</string>
     <string name="pattern_help">The pattern is a regular expression. For instance: \n - \'.....+\' finds names with length greater than 5 letters, \n - \'R...+\' finds name starting with the \'R\' letter and length is greater than 4 letters, \n - \'.+r\' finds name ending with the \'r\' letter.\n\nMore informations at https://developer.android.com/reference/java/util/regex/Pattern.html</string>
+    <string name="previous">Previous</string>
     <string name="reset">Reset</string>
     <string name="reset_question_content">Do you want to reset this babyname project scores?</string>
     <string name="reset_question_title">Reset babyname project scores</string>

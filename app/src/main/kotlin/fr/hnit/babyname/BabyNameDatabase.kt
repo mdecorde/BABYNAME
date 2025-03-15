@@ -38,7 +38,7 @@ class BabyNameDatabase : SparseArray<BabyName>() {
                         val line = reader.readLine()
                         val items = line.split(";".toRegex()).toTypedArray()
                         if (items.size != 3) {
-                            AppLogger.e(this, "Failed to parse line in $databaseFileName:$lineNumber: $line")
+                            Log.e(this, "Failed to parse line in $databaseFileName:$lineNumber: $line")
                             break
                         }
 
@@ -56,12 +56,12 @@ class BabyNameDatabase : SparseArray<BabyName>() {
                             val b = BabyName(name, genres, origins)
                             this@BabyNameDatabase.put(b.id, b)
                         } else {
-                            AppLogger.e(this, "Empty baby name in $databaseFileName:$lineNumber: $line")
+                            Log.e(this, "Empty baby name in $databaseFileName:$lineNumber: $line")
                         }
                     }
                     reader.close()
 
-                    AppLogger.d(this, "Loaded " + this@BabyNameDatabase.size() + " names")
+                    Log.d(this, "Loaded " + this@BabyNameDatabase.size() + " names")
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }

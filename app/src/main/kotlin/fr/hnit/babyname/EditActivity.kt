@@ -90,7 +90,7 @@ class EditActivity : AppCompatActivity() {
 
         val projectIndex = intent.getIntExtra(PROJECT_EXTRA, -1)
         project = if (projectIndex == -1) {
-            //AppLogger.d(this, "new baby");
+            //Log.d(this, "new baby");
             BabyNameProject()
         } else {
             MainActivity.projects[projectIndex]
@@ -103,7 +103,7 @@ class EditActivity : AppCompatActivity() {
     }
 
     fun applyFromProject(project: BabyNameProject) {
-        //AppLogger.d(this, "Set project preferences: "+project);
+        //Log.d(this, "Set project preferences: "+project);
 
         val genders = project.genders
         if (genders.contains(BabyNameDatabase.GENDER_FEMALE) && genders.contains(
@@ -193,7 +193,7 @@ class EditActivity : AppCompatActivity() {
         if (storeToProject(tmp)) {
             val n: Int = MainActivity.database.size()
             for (i in 0 until n) {
-                if (tmp.isNameValid(MainActivity.database.get(i)!!)) {
+                if (tmp.isNameValid(MainActivity.database.get(i))) {
                     count += 1
                 }
             }
@@ -221,12 +221,16 @@ class EditActivity : AppCompatActivity() {
             R.id.action_save_babyproject -> {
                 //Log.d("Save project");
                 if (storeToProject(project)) {
-                    if (!project.rebuildNexts()) {
+                    if (project.loop == 0) {
+                        // initialize
+                        project.nextLoop()
+                    }
+
+                    if (project.nexts.isEmpty()) {
                         Toast.makeText(
-                            this@EditActivity,
-                            R.string.too_much_constraint,
-                            Toast.LENGTH_SHORT
+                            this, R.string.too_much_constraint, Toast.LENGTH_SHORT
                         ).show()
+                        return false
                     }
 
                     if (MainActivity.projects.indexOf(project) == -1) {

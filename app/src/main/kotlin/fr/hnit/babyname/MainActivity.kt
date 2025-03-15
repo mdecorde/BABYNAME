@@ -67,24 +67,26 @@ class MainActivity : AppCompatActivity() {
         super.onResume() // Always call the superclass method first
         adapter.notifyDataSetChanged()
         for (project in projects) {
-            if (project.needSaving) {
-                //Toast.makeText(this, "Saving changes of "+project+"... "+project, Toast.LENGTH_SHORT).show();
-                if (!BabyNameProject.Companion.storeProject(project, this)) {
-                    Toast.makeText(
-                        this,
-                        "Error: could not save changes to babyname project: $project",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+            if (!project.needSaving) {
+                continue
+            }
+
+            //Toast.makeText(this, "Saving changes of "+project+"... "+project, Toast.LENGTH_SHORT).show();
+            if (!BabyNameProject.Companion.storeProject(project, this)) {
+                Toast.makeText(
+                    this,
+                    "Error: could not save changes to babyname project: $project",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
 
     private fun initializeProjects() {
-        //AppLogger.d("Initializing projects...");
+        //Log.d("Initializing projects...");
         for (filename in this.fileList()) {
             if (filename.endsWith(".baby")) {
-                //AppLogger.d("Restoring... "+filename);
+                //Log.d("Restoring... "+filename);
                 try {
                     val project: BabyNameProject? = BabyNameProject.readProject(filename, this)
                     if (project != null) {
@@ -142,9 +144,7 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle(R.string.reset_question_title)
         builder.setMessage(R.string.reset_question_content)
 
-        builder.setPositiveButton(
-            R.string.yes
-        ) { dialog, _ ->
+        builder.setPositiveButton(R.string.yes) { dialog, _ ->
             project.reset()
             adapter.notifyDataSetChanged()
             if (!BabyNameProject.storeProject(project, this@MainActivity)) {
@@ -157,9 +157,7 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(
-            R.string.no
-        ) { dialog, which -> // I do not need any action here you might
+        builder.setNegativeButton(R.string.no) { dialog, which ->
             dialog.dismiss()
         }
 
@@ -193,10 +191,8 @@ class MainActivity : AppCompatActivity() {
 
     fun projectToString(p: BabyNameProject): String {
         var text = ""
-        text += if (p.genders.contains(BabyNameDatabase.GENDER_FEMALE) && p.genders.contains(
-                BabyNameDatabase.GENDER_MALE
-            )
-        ) {
+        text += if (p.genders.contains(BabyNameDatabase.GENDER_FEMALE)
+                && p.genders.contains(BabyNameDatabase.GENDER_MALE)) {
             getString(R.string.boy_or_girl_name)
         } else if (p.genders.contains(BabyNameDatabase.GENDER_MALE)) {
             getString(R.string.boy_name)
@@ -227,19 +223,18 @@ class MainActivity : AppCompatActivity() {
             text += " "
         }
 
+        //Log.d(this, "p.loop: ${p.loop}, p.nexts.size: ${p.nexts.size}, p.scores.size: ${p.scores.size} p.nextsIndex: ${p.nextsIndex}, remainingNames: ${p.nexts.size - p.nextsIndex}")
+
         if (p.nexts.size == 1) {
             text += getString(R.string.one_remaining_name)
-        } else if (p.nexts.isEmpty()) {
-            var n = p.scores.size
-            if (n > 11) {
-                n -= 10
-            }
-            text += String.format(getString(R.string.no_remaining_loop), p.loop, n)
+        } else if (p.nexts.size == p.scores.size) {
+            text += String.format(getString(R.string.no_remaining_loop), p.loop, p.nexts.size)
         } else {
-            text += String.format(getString(R.string.remaining_names), p.nexts.size)
+            val remainingNames = p.nexts.size - p.nextsIndex
+            text += String.format(getString(R.string.remaining_names), remainingNames)
         }
 
-        val bestName= p.getBest()
+        val bestName = p.getBest()
         if (p.scores.isNotEmpty() && bestName != null) {
             text += " " + String.format(getString(R.string.best_match_is), bestName.name)
         }
@@ -264,9 +259,7 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle(R.string.top_title)
         builder.setMessage(buffer.toString())
 
-        builder.setPositiveButton(
-            R.string.ok
-        ) { dialog, _ -> dialog.dismiss() }
+        builder.setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
 
         if (names.isNotEmpty()) {
             builder.setNegativeButton(
@@ -291,14 +284,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun doFindName(project: BabyNameProject) {
-        //AppLogger.d("Open FindActivity with "+project+" index="+projects.indexOf(project));
+        //Log.d("Open FindActivity with "+project+" index="+projects.indexOf(project));
         val intent = Intent(this@MainActivity, FindActivity::class.java)
         intent.putExtra(FindActivity.PROJECT_EXTRA, projects.indexOf(project))
         this.startActivityForResult(intent, 0)
     }
 
     private fun openEditActivity(project: BabyNameProject?) {
-        //AppLogger.d("Open EditActivity with "+project+" index="+projects.indexOf(project));
+        //Log.d("Open EditActivity with "+project+" index="+projects.indexOf(project));
         val intent = Intent(this@MainActivity, EditActivity::class.java)
         if (project != null) {
             intent.putExtra(EditActivity.PROJECT_EXTRA, projects.indexOf(project))

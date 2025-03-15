@@ -2,7 +2,7 @@ package fr.hnit.babyname
 
 import android.util.Log
 
-object AppLogger {
+object Log {
     private fun contextString(context: Any): String {
         if (context is String) {
             return context
@@ -11,6 +11,7 @@ object AppLogger {
         }
     }
 
+    // debug
     fun d(context: Any, message: String) {
         if (BuildConfig.DEBUG) {
             val tag = contextString(context)
@@ -18,6 +19,7 @@ object AppLogger {
         }
     }
 
+    // info
     fun i(context: Any, message: String) {
         if (BuildConfig.DEBUG) {
             val tag = contextString(context)
@@ -25,6 +27,7 @@ object AppLogger {
         }
     }
 
+    // warning
     fun w(context: Any, message: String) {
         if (BuildConfig.DEBUG) {
             val tag = contextString(context)
@@ -32,6 +35,7 @@ object AppLogger {
         }
     }
 
+    // error
     fun e(context: Any, message: String) {
         val tag = contextString(context)
         Log.e(tag, message)
