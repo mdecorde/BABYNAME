@@ -5,4 +5,6 @@ This application helps you to find out your baby name within from a lexicon of +
 
 [<img src="misc/fdroid.png" alt="Get it on F-Droid" width="300px">](https://f-droid.org/repository/browse/?fdid=fr.hnit.babyname)
 
+<p align="center">
 <img src="misc/main_screen.png" width="250"> <img src="misc/edit_screen.png" width="250"> <img src="misc/find_screen.png" width="250">
+</p>
