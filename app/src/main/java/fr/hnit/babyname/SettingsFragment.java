@@ -22,7 +22,8 @@ import android.preference.PreferenceFragment;
 /**
  * Created by mdecorde on 15/05/16.
  */
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragment
+{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

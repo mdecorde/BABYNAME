@@ -2,15 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <item
-            android:id="@+id/action_new_baby"
-            android:title="@string/action_new_baby"
-            app:showAsAction="always"/>
-        <item
-            android:id="@+id/action_settings"
-            android:title="@string/action_settings"
-            android:icon="@drawable/cog"
-            app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_new_baby"
+        android:title="@string/action_new_baby"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/cog"
+        app:showAsAction="ifRoom"/>
+
     <item
         android:id="@+id/action_about"
         android:title="@string/aboutbutton"

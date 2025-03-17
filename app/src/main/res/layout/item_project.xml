@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:weightSum="1"
     >
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
             android:text="New Text"
             android:id="@+id/list_text"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -74,6 +69,4 @@
                 android:layout_column="1" />
 
         </GridLayout>
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

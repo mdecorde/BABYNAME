@@ -29,14 +29,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class BabyNameAdapter extends ArrayAdapter<BabyNameProject> {
-
+public class BabyNameAdapter extends ArrayAdapter<BabyNameProject>
+{
     private final MainActivity context;
     private final ArrayList<BabyNameProject> itemsArrayList;
 
     public BabyNameAdapter(Context context, ArrayList<BabyNameProject> itemsArrayList) {
-
-        super(context, R.layout.row, itemsArrayList);
+        super(context, R.layout.item_project, itemsArrayList);
 
         this.context = (MainActivity)context;
         this.itemsArrayList = itemsArrayList;
@@ -44,7 +43,6 @@ public class BabyNameAdapter extends ArrayAdapter<BabyNameProject> {
 
     @Override
     public View getView(int position, final View convertView, ViewGroup parent) {
-
         final BabyNameProject project = itemsArrayList.get(position);
 
         // 1. Create inflater
@@ -52,38 +50,18 @@ public class BabyNameAdapter extends ArrayAdapter<BabyNameProject> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // 2. Get rowView from inflater
-        View rowView = inflater.inflate(R.layout.row, parent, false);
+        View rowView = inflater.inflate(R.layout.item_project, parent, false);
 
         // 3. Get the two text view from the rowView
-        TextView text = (TextView) rowView.findViewById(R.id.list_text);
-        ImageButton goButton = (ImageButton) rowView.findViewById(R.id.list_go);
-        goButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.doFindName(project);
-            }
-        });
-        ImageButton resetButton = (ImageButton) rowView.findViewById(R.id.list_reset);
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.doResetBaby(project);
-            }
-        });
-        ImageButton topButton = (ImageButton) rowView.findViewById(R.id.list_top);
-        topButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.doShowTop10(project);
-            }
-        });
-        ImageButton deleteButton = (ImageButton) rowView.findViewById(R.id.list_delete);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.doDeleteBaby(project);
-            }
-        });
+        TextView text = rowView.findViewById(R.id.list_text);
+        ImageButton goButton = rowView.findViewById(R.id.list_go);
+        goButton.setOnClickListener(view -> context.doFindName(project));
+        ImageButton resetButton = rowView.findViewById(R.id.list_reset);
+        resetButton.setOnClickListener(view -> context.doResetBaby(project));
+        ImageButton topButton = rowView.findViewById(R.id.list_top);
+        topButton.setOnClickListener(view -> context.doShowTop10(project));
+        ImageButton deleteButton = rowView.findViewById(R.id.list_delete);
+        deleteButton.setOnClickListener(view -> context.doDeleteBaby(project));
 
         // 4. Set the text for textView
         text.setText(context.projectToString(project));

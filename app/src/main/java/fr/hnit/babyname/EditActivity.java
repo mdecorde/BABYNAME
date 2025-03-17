@@ -16,17 +16,20 @@ You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
  */
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,106 +38,139 @@ import java.util.HashSet;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-public class EditActivity extends AppCompatActivity {
-
+public class EditActivity extends AppCompatActivity
+{
     public static final String PROJECT_EXTRA = "project_position";
-public static final HashSet<String> allOrigins = new HashSet<String>();;
     BabyNameProject project;
 
-    ArrayAdapter<String> adapter;
+    OriginAdapter adapter;
     ListView originsListView;
-    RadioButton boyRadioButton;
-    RadioButton girlRadioButton;
-    RadioButton bothRadioButton;
+    RadioGroup genderRadio;
     EditText patternText;
+    TextView counterText;
+
+    Boolean loadFinished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        originsListView = (ListView) findViewById(R.id.origins_list);
-        boyRadioButton = (RadioButton) findViewById(R.id.boy_radio);
-        girlRadioButton = (RadioButton) findViewById(R.id.girl_radio);
-        bothRadioButton = (RadioButton) findViewById(R.id.both_radio);
-        patternText = (EditText) findViewById(R.id.pattern_text);
+        originsListView = findViewById(R.id.origins_list);
+        patternText = findViewById(R.id.pattern_text);
+        counterText = findViewById(R.id.counter_text);
+        genderRadio = findViewById(R.id.gender_radio);
 
-        // initialize
-        allOrigins.clear();
-        int n = MainActivity.database.size();
-        for (int i = 0 ; i < n ; i++) {
-            BabyName name = MainActivity.database.get(i);
-            if (name != null)
-                allOrigins.addAll(name.origins);
-        }
-        ArrayList<String> originsList = new ArrayList<>(allOrigins);
-        Collections.sort(originsList);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, originsList);
+        int defaultBackgroundColor = patternText.getDrawingCacheBackgroundColor();
+        patternText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    // check if the pattern is valid
+                    Pattern.compile(s.toString().trim());
+                    patternText.setBackgroundColor(defaultBackgroundColor);
+                    if (loadFinished) {
+                        updateNameCounter();
+                    }
+                } catch (PatternSyntaxException e) {
+                    // set background to orange
+                    patternText.setBackgroundColor(Color.rgb(255, 165, 0));
+                }
+            }
+        });
+
+        genderRadio.setOnCheckedChangeListener((group, checkedId) -> {
+            if (loadFinished) {
+                updateNameCounter();
+            }
+        });
+
+        HashSet<String> allOrigins = MainActivity.database.getAllOrigins();
+        ArrayList<String> origins = new ArrayList<>(allOrigins);
+        Collections.sort(origins);
+
+        adapter = new OriginAdapter(origins, getApplicationContext(), () -> {
+            if (loadFinished) {
+                updateNameCounter();
+            }
+        });
         originsListView.setAdapter(adapter);
 
         Intent intent = getIntent();
 
-        if (intent != null) {
-            BabyNameProject project = MainActivity.projects.get(intent.getIntExtra(PROJECT_EXTRA, 0));
-            setProject(project);
+        int projectIndex = intent.getIntExtra(PROJECT_EXTRA, -1);
+        if (projectIndex == -1) {
+            //AppLogger.info("new baby");
+            project = new BabyNameProject();
+        } else {
+            project = MainActivity.projects.get(projectIndex);
         }
+
+        applyFromProject(project);
+
+        loadFinished = true;
+        updateNameCounter();
     }
 
-    public void setProject(BabyNameProject project) {
+    public void applyFromProject(BabyNameProject project) {
         //AppLogger.info("Set project preferences: "+project);
-        this.project = project;
 
-        if (project.getGenders().contains(NameData.F) && project.getGenders().contains(NameData.M)) {
-            boyRadioButton.setChecked(false);
-            girlRadioButton.setChecked(false);
-            bothRadioButton.setChecked(true);
-        } else if (project.getGenders().contains(NameData.M)) {
-            boyRadioButton.setChecked(true);
-            girlRadioButton.setChecked(false);
-            bothRadioButton.setChecked(false);
+        HashSet<String> genders = project.getGenders();
+        if (genders.contains(BabyNameDatabase.GENDER_FEMALE) && genders.contains(BabyNameDatabase.GENDER_MALE)) {
+            genderRadio.check(R.id.all_radio);
+        } else if (genders.contains(BabyNameDatabase.GENDER_MALE)) {
+            genderRadio.check(R.id.boy_radio);
         } else {
-            boyRadioButton.setChecked(false);
-            girlRadioButton.setChecked(true);
-            bothRadioButton.setChecked(false);
+            genderRadio.check(R.id.girl_radio);
         }
 
-        patternText.setText(project.getPattern().toString());
+        // set pattern
+        patternText.setText(project.pattern.toString());
 
-        // clear selection
-        for (int i = 0 ; i < originsListView.getCount() ; i++) {
+        // clear origin selection
+        for (int i = 0 ; i < originsListView.getCount() ; i += 1) {
             originsListView.setItemChecked(i, false);
         }
 
         // select project origins
         for (String origin : project.getOrigins()) {
             int position = adapter.getPosition(origin);
-            if (position >= 0)
+            if (position >= 0) {
                 originsListView.setItemChecked(position, true);
+            }
         }
     }
 
-    public boolean registerProject() {
+    public boolean storeToProject(BabyNameProject project) {
+        //AppLogger.info("storeToProject()");
 
-        //update origins
+        // update origins
         project.getOrigins().clear();
-        SparseBooleanArray itemChecked = originsListView.getCheckedItemPositions();
-        for (int i = 0 ; i < itemChecked.size() ; i++) {
-            boolean checked = itemChecked.get(i);
+        for (int i = 0; i < adapter.origins.size(); i += 1) {
+            String origin = adapter.origins.get(i);
+            Boolean checked = adapter.checked.get(i);
             if (checked) {
-                String v = adapter.getItem(i);
-                project.getOrigins().add(v);
+                project.getOrigins().add(origin);
             }
         }
 
         // update genders
         project.getGenders().clear();
-        if (bothRadioButton.isChecked()) {
-            project.getGenders().add(NameData.F);
-            project.getGenders().add(NameData.M);
-        } else if (boyRadioButton.isChecked()) {
-            project.getGenders().add(NameData.M);
-        } else {
-            project.getGenders().add(NameData.F);
+        switch (genderRadio.getCheckedRadioButtonId()) {
+            case R.id.boy_radio -> {
+                project.getGenders().add(BabyNameDatabase.GENDER_MALE);
+            }
+            case R.id.girl_radio -> {
+                project.getGenders().add(BabyNameDatabase.GENDER_FEMALE);
+            }
+            case R.id.all_radio -> {
+                project.getGenders().add(BabyNameDatabase.GENDER_FEMALE);
+                project.getGenders().add(BabyNameDatabase.GENDER_MALE);
+            }
         }
 
         // update name pattern
@@ -146,16 +182,32 @@ public static final HashSet<String> allOrigins = new HashSet<String>();;
             return false;
         }
 
-        if (!project.rebuildNexts()) {
-            Toast.makeText(EditActivity.this, R.string.too_much_constraint, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
         //Toast.makeText(EditActivity.this, "Project set, "+project.nexts.size()+" names to review !", Toast.LENGTH_SHORT).show();
 
         project.setNeedToBeSaved(true);
 
         return true;
+    }
+
+    void updateNameCounter() {
+        //AppLogger.info("updateNameCounter()");
+        int count = 0;
+
+        if (project != null) {
+            BabyNameProject tmp = new BabyNameProject();
+            if (storeToProject(tmp)) {
+                int n = MainActivity.database.size();
+                for (int i = 0; i < n; i++) {
+                    if (tmp.isNameValid(MainActivity.database.get(i))) {
+                        count += 1;
+                    }
+                }
+            }
+        }
+
+        counterText.setText(
+            String.format(getString(R.string.names_counter), count)
+        );
     }
 
     @Override
@@ -167,7 +219,6 @@ public static final HashSet<String> allOrigins = new HashSet<String>();;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = null;
         switch (item.getItemId()) {
             case R.id.action_cancelsave_babyproject:
                 //AppLogger.info("Cancel changes");
@@ -177,10 +228,17 @@ public static final HashSet<String> allOrigins = new HashSet<String>();;
                 return true;
             case R.id.action_save_babyproject:
                 //AppLogger.info("Save project");
-                if (registerProject()) {
+                if (storeToProject(project)) {
+                    if (!project.rebuildNexts()) {
+                        Toast.makeText(EditActivity.this, R.string.too_much_constraint, Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (MainActivity.projects.indexOf(project) == -1) {
+                        MainActivity.projects.add(project);
+                    }
+
                     this.finish();
                 }
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

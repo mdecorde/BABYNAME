@@ -16,56 +16,75 @@ You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
  */
+import android.content.Context;
 import android.util.SparseArray;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 
 /**
  * Created by mdecorde on 16/05/16.
  */
-public class BabyNameDatabase extends SparseArray<BabyName> {
+public class BabyNameDatabase extends SparseArray<BabyName>
+{
+    public static final String GENDER_MALE = "m";
+    public static final String GENDER_FEMALE = "f";
+    //public static final String GENDER_NEUTRAL = "n";
 
-    private static int BABYCOUNTER = 0;
+    public void initialize(Context ctx) {
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    String databaseFileName = "babynames.csv";
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(ctx.getAssets().open(databaseFileName)));
+                    int lineNumber = 0;
+                    while (reader.ready()) {
+                        lineNumber += 1;
+                        String line = reader.readLine();
+                        String[] items = line.split(";", -1);
+                        if (items.length != 3) {
+                            AppLogger.error("Failed to parse line in " + databaseFileName + ":"  + lineNumber +  ": " + line);
+                            break;
+                        }
 
-    public void initialize() {
-        for (int i = 0 ; i < NameData.data.length ; i = i+3) {
-            HashSet<String> genres = new HashSet<>(Arrays.asList(NameData.data[i+1].split(",")));
-            HashSet<String> origins = new HashSet<>(Arrays.asList(NameData.data[i+2].split(",")));
-            BabyName b = new BabyName(NameData.data[i], genres, origins);
-            this.put(b.id, b);
-        }
+                        String name = items[0];
+                        HashSet<String> genres = new HashSet<>(Arrays.asList(items[1].split(",", -1)));
+                        HashSet<String> origins = new HashSet<>(Arrays.asList(items[2].split(",", -1)));
 
-        for (int i = 0 ; i < NameData2.data.length ; i = i+3) {
-            HashSet<String> genres = new HashSet<>(Arrays.asList(NameData2.data[i+1].split(",")));
-            HashSet<String> origins = new HashSet<>(Arrays.asList(NameData2.data[i+2].split(",")));
-            BabyName b = new BabyName(NameData2.data[i], genres, origins);
-            this.put(b.id, b);
-        }
+                        // remove empty entries
+                        genres.remove("");
+                        origins.remove("");
 
-        for (int i = 0 ; i < NameData3.data.length ; i = i+3) {
-            HashSet<String> genres = new HashSet<>(Arrays.asList(NameData3.data[i+1].split(",")));
-            HashSet<String> origins = new HashSet<>(Arrays.asList(NameData3.data[i+2].split(",")));
-            BabyName b = new BabyName(NameData3.data[i], genres, origins);
-            this.put(b.id, b);
-        }
+                        if (!name.isEmpty()) {
+                            BabyName b = new BabyName(name, genres, origins);
+                            BabyNameDatabase.this.put(b.id, b);
+                        } else {
+                            AppLogger.error("Empty baby name in " + databaseFileName + ":"  + lineNumber +  ": " + line);
+                        }
+                    }
+                    reader.close();
 
-        for (int i = 0 ; i < NameData4.data.length ; i = i+3) {
-            HashSet<String> genres = new HashSet<>(Arrays.asList(NameData4.data[i+1].split(",")));
-            HashSet<String> origins = new HashSet<>(Arrays.asList(NameData4.data[i+2].split(",")));
-            BabyName b = new BabyName(NameData4.data[i], genres, origins);
-            this.put(b.id, b);
-        }
-        for (int i = 0 ; i < NameData5.data.length ; i = i+3) {
-            HashSet<String> genres = new HashSet<>(Arrays.asList(NameData5.data[i+1].split(",")));
-            HashSet<String> origins = new HashSet<>(Arrays.asList(NameData5.data[i+2].split(",")));
-            BabyName b = new BabyName(NameData5.data[i], genres, origins);
-            this.put(b.id, b);
-        }
+                    AppLogger.info("Loaded " +  BabyNameDatabase.this.size() + " names");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
 
-    public static int getNextBabyID() {
-        BABYCOUNTER++;
-        return BABYCOUNTER;
+    HashSet<String> getAllOrigins() {
+        HashSet<String> all = new HashSet<>();
+        int n = this.size();
+        for (int i = 0; i < n; i++) {
+            BabyName entry = this.get(i);
+            if (entry != null) {
+                all.addAll(entry.origins);
+            }
+        }
+        return all;
     }
 }

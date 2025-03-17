@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BabyName</string>
-    <string name="action_new_baby">Nouveau</string>
-    <string name="action_dig_baby">Trouver un prénom...</string>
-    <string name="action_reset_baby">Remise à zéro des scores</string>
-    <string name="action_delete_baby">Effacer</string>
-    <string name="action_top_baby">Top 10 !</string>
-    <string name="action_settings">Préférences</string>
-    <string name="home_text">Projets de nom de bébé \n(cliquer sur \'Nouveau\' pour commencer)</string>
-    <string name="edit_title">Préférences</string>
-    <string name="genre">Genre</string>
-    <string name="origins">Origines</string>
-    <string name="pattern">Motif</string>
-    <string name="boy">Garçon</string>
-    <string name="girl">Fille</string>
-    <string name="action_save_babyproject">OK</string>
-    <string name="action_cancelsave_babyproject">Annuler</string>
-    <string name="both">Qui sait ?</string>
-    <string name="go">C\'est parti</string>
-    <string name="reset">Remise à zéro</string>
-    <string name="delete">Effacer</string>
-    <string name="top">Top 10 !</string>
-    <string name="pattern_help">Le motif est une expression rationnelle. Par exemple, \n - \'.....+\' trouve les noms faisant plus de 4 lettres, \n - \'R...+\' trouve les noms commençant par la lettre \'R\' et faisant plus de 3 lettres, \n - \'.+r\' trouve les noms qui finissent par la lettre \'r\'.\n\nPlus d\'informations à https://developer.android.com/reference/java/util/regex/Pattern.html</string>
-    <string name="about">BabyName v0.4\n\nCette application permet de trouve un nom pour son futur bébé parmis un lexique de plus de 10000 prénoms organisés par genre et origine (produit par Mike Campbell et Boris New, voir http://www.lexique.org/public/prenoms.php).\n\nCette application est entierement libre, pour toute suggestion ou demande d\'aide, veuillez vous rendre sur https://github.com/mdecorde/BABYNAME</string>
-    <string name="delete_question_content">Voulez vous vraiment vraimen vraiment supprimer le projet ?</string>
-    <string name="delete_question_title">Supprimer le projet babyname</string>
-    <string name="reset_question_title">Remise à zéro des scores</string>
-    <string name="reset_question_content">Voulez vous vraiment mettre à zéro les scores ?</string>
-    <string name="aboutbutton">À propos</string>
-    <string name="top_title">Top 10 !</string>
-    <string name="ok">OK</string>
-    <string name="copy">Copier</string>
-    <string name="no">Non</string>
-    <string name="yes">Oui</string>
-    <string name="new_baby">Nouveau bébé ! \\o/</string>
-    <string name="no_name_rated">Pas de nom évalué. Commencer en appuyant sur le bouton \'play\'.</string>
-    <string name="boy_or_girl_name">Un garçon ou une fille dont le nom</string>
-    <string name="boy_name">Un garçon dont le nom</string>
-    <string name="girl_name">Une file dont le nom</string>
-    <string name="no_origin">n\'a pas d\'origine particulière</string>
-    <string formatted="false" name="origin_is">l\'origine est \'%s\'</string>
-    <string name="one_remaining_name">Un prénom à évaluer</string>
-    <string formatted="false" name="origin_are">les origines sont %s</string>
-    <string formatted="false" name="matches_with">match avec \'%s\'</string>
-    <string formatted="false" name="no_remaining_loop">Plus de nom à voir (loop=%d). Recommencer un tour avec %d des noms ?</string>
-    <string name="remaining_names">%d restent à noter</string>
-    <string formatted="false" name="bact_match_is">Le meilleur est \'%s\'</string>
+    <string formatted="false" name="best_match_is">Le meilleur est \'%s\'.</string>
+    <string formatted="false" name="matches_with">match avec \'%s\'.</string>
     <string formatted="false" name="name_pattern_malformed">Le motif du nom est mal formé : \n%s</string>
-    <string name="too_much_constraint">Trop de contrainte, aucun nom n\a été sélectionné.</string>
-    <string name="starting_new_loop">Starting a new review loop!</string>
-    <string name="all_names_reviewed">Tous les noms ont été passé en revue</string>
     <string formatted="false" name="name_rated_score">%s noté: %d (+%d)</string>
+    <string formatted="false" name="no_remaining_loop">Plus de nom à voir (loop=%d). Recommencer un tour avec %d des noms?</string>
+    <string formatted="false" name="origin_are">les origines sont %s</string>
+    <string formatted="false" name="origin_is">l\'origine est \'%s\'</string>
+    <string name="about">BabyName %s\n\nCette application permet de trouve un nom pour son futur bébé parmis un lexique de plus de 10000 prénoms organisés par genre et origine (produit par Mike Campbell et Boris New, voir http://www.lexique.org/public/prenoms.php).\n\nCette application est entierement libre, pour toute suggestion ou demande d\'aide, veuillez vous rendre sur https://github.com/mdecorde/BABYNAME</string>
+    <string name="aboutbutton">À propos</string>
+    <string name="action_cancelsave_babyproject">Annuler</string>
+    <string name="action_delete_baby">Effacer</string>
+    <string name="action_dig_baby">Trouver un prénom...</string>
+    <string name="action_new_baby">Nouveau</string>
+    <string name="action_reset_baby">Remise à zéro des scores</string>
+    <string name="action_save_babyproject">OK</string>
+    <string name="action_settings">Préférences</string>
+    <string name="action_top_baby">Top 10 !</string>
+    <string name="all">Qui sait?</string>
+    <string name="all_names_reviewed">Tous les noms ont été passé en revue</string>
+    <string name="app_name">BabyName</string>
+    <string name="boy">Garçon</string>
+    <string name="boy_name">Un garçon dont le nom</string>
+    <string name="boy_or_girl_name">Un garçon ou une fille dont le nom</string>
+    <string name="copy">Copier</string>
+    <string name="delete">Effacer</string>
+    <string name="delete_question_content">Voulez vous vraiment vraimen vraiment supprimer le projet?</string>
+    <string name="delete_question_title">Supprimer le projet babyname</string>
+    <string name="edit_title">Préférences</string>
+    <string name="genre">Genre:</string>
+    <string name="girl">Fille</string>
+    <string name="girl_name">Une file dont le nom</string>
+    <string name="go">C\'est parti</string>
+    <string name="home_text">Projets de nom de bébé \n(cliquer sur \'Nouveau\' pour commencer)</string>
     <string name="n_name_left">%d restant.</string>
+    <string name="new_baby">Nouveau bébé ! \\o/</string>
+    <string name="no">Non</string>
+    <string name="no_name_rated">Pas de nom évalué. Commencer en appuyant sur le bouton \'play\'.</string>
+    <string name="no_origin">n\'a pas d\'origine particulière</string>
+    <string name="ok">OK</string>
+    <string name="one_remaining_name">Un prénom à évaluer</string>
+    <string name="origins">Origines:</string>
+    <string name="pattern">Motif:</string>
+    <string name="pattern_help">Le motif est une expression rationnelle. Par exemple, \n - \'.....+\' trouve les noms faisant plus de 4 lettres, \n - \'R...+\' trouve les noms commençant par la lettre \'R\' et faisant plus de 3 lettres, \n - \'.+r\' trouve les noms qui finissent par la lettre \'r\'.\n\nPlus d\'informations à https://developer.android.com/reference/java/util/regex/Pattern.html</string>
+    <string name="remaining_names">%d restent à noter.</string>
+    <string name="reset">Remise à zéro</string>
+    <string name="reset_question_content">Voulez vous vraiment mettre à zéro les scores?</string>
+    <string name="reset_question_title">Remise à zéro des scores</string>
+    <string name="starting_new_loop">Starting a new review loop!</string>
     <string name="text_copied">Texte copié.</string>
+    <string name="too_much_constraint">Trop de contrainte, aucun nom n\a été sélectionné.</string>
+    <string name="top">Top 10!</string>
+    <string name="top_title">Top 10!</string>
+    <string name="yes">Oui</string>
 </resources>

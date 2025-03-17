@@ -16,8 +16,10 @@ You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
  */
+
 import android.content.Context;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -25,7 +27,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -35,14 +36,14 @@ import java.util.regex.Pattern;
 /**
  * Created by mdecorde on 15/05/16.
  */
-public class BabyNameProject implements Serializable {
-
+public class BabyNameProject implements Serializable
+{
     protected boolean needSaving = false;
-    int loop = 0;
-    protected String ID;
+    protected int loop = 0;
+    protected String id;
     protected HashSet<String> genders = new HashSet<>();
     protected HashSet<String> origins = new HashSet<>();
-    protected Pattern pattern = null;
+    protected Pattern pattern;
     protected HashMap<Integer, Integer> scores = new HashMap<>();
     protected int max = 0;
     protected Integer iMax = null;
@@ -50,14 +51,14 @@ public class BabyNameProject implements Serializable {
     protected List<Integer> nexts = new ArrayList<Integer>();
 
     public BabyNameProject() {
-        genders.add(NameData.M);
-        genders.add(NameData.F);
+        genders.add(BabyNameDatabase.GENDER_MALE);
+        genders.add(BabyNameDatabase.GENDER_FEMALE);
         pattern = Pattern.compile(".*");
-        ID = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
     }
 
     public String getID() {
-        return ID;
+        return id;
     }
 
     public void setNeedToBeSaved(boolean s) {
@@ -81,6 +82,9 @@ public class BabyNameProject implements Serializable {
      * @return best baby name match, may be null
      */
     public BabyName getBest() {
+        if (iMax == null) {
+            return null;
+        }
         return MainActivity.database.get(iMax);
     }
 
@@ -92,29 +96,21 @@ public class BabyNameProject implements Serializable {
         return origins;
     }
 
-    public Pattern getPattern() {
-        return pattern;
-    }
-
-    public HashSet<String> setGenres(HashSet<String> genres) {
+    public void setGenres(HashSet<String> genres) {
         this.genders = genres;
-        return genres;
     }
 
-    public HashSet<String> setOrigins(HashSet<String> origins) {
+    public void setOrigins(HashSet<String> origins) {
         this.origins = origins;
-        return origins;
     }
 
-    public Pattern setPattern(Pattern pattern) {
+    public void setPattern(Pattern pattern) {
         this.pattern = pattern;
-        return pattern;
     }
 
     public boolean isNameValid(BabyName name) {
-        //return true;
         //AppLogger.info("test gender " + name+" " + name.genres + " against project genres " + this.getGenders());
-        if (this.genders.size() > 0) {
+        if (!this.genders.isEmpty()) {
             boolean genderIsOk = false;
             for (String genre : name.genres) {
                 if (this.genders.contains(genre)) {
@@ -126,7 +122,7 @@ public class BabyNameProject implements Serializable {
         }
 
         //AppLogger.info("test origin " + name+" " + name.origins + " against project origins " + this.getOrigins());
-        if (this.origins.size() > 0) {
+        if (!this.origins.isEmpty()) {
             boolean originIsOk = false;
             for (String origin : name.origins) {
                 if (this.origins.contains(origin)) {
@@ -142,58 +138,51 @@ public class BabyNameProject implements Serializable {
             return pattern.matcher(name.name).matches();
         }
         return true;
-
-
     }
 
     protected boolean rebuildNexts() {
         nexts.clear();
 
         if (loop >= 1) { // uses score to get next names and remove worst scores
-
-            for (int k : scores.keySet()) nexts.add(k); // get all indices
+            // get all indices
+            nexts.addAll(scores.keySet());
 
             if (nexts.size() > 11) {
-                Collections.sort(nexts, new Comparator<Integer>() {
-                    @Override
-                    public int compare(Integer i1, Integer i2) {
-                        return scores.get(i1) - scores.get(i2);
-                    }
-                });
+                Collections.sort(nexts, (i1, i2) -> scores.get(i1) - scores.get(i2));
 
                 int amountToRemove = Math.min(10, nexts.size() - 10);
 
-                for (int i : nexts.subList(0, amountToRemove)) { scores.remove(i); } // remove the scores as well
+                for (int i : nexts.subList(0, amountToRemove)) {
+                    scores.remove(i); // remove the scores as well
+                }
                 nexts = nexts.subList(amountToRemove, nexts.size()); // remove the 10 worst scores
             }
         } else { // first initialisation
-
             //AppLogger.info("Build nexts name random list " + MainActivity.database.size());
             for (int i = 1; i < MainActivity.database.size(); i++) {
-                if (isNameValid(MainActivity.database.get(i)))
+                if (isNameValid(MainActivity.database.get(i))) {
                     nexts.add(i);
+                }
             }
         }
 
         Collections.shuffle(nexts);
         //AppLogger.info("nexts ("+nexts.size()+")= " + nexts);
         loop++;
-        return nexts.size() > 0;
+        return !nexts.isEmpty();
     }
 
     protected BabyName nextName() {
-        if (nexts.size() == 0) {
+        if (nexts.isEmpty()) {
             currentBabyNameIndex = -1;
             return null;
         }
 
-        BabyName currentBabyName;
-
         int next = nexts.remove(0);
         //AppLogger.info("Next name index: " + next + " from " + MainActivity.database.size() + " choices.");
-        currentBabyName = MainActivity.database.get(next);
+        BabyName currentBabyName = MainActivity.database.get(next);
         if (currentBabyName == null) {
-            if (nexts.size() == 0) {
+            if (nexts.isEmpty()) {
                 currentBabyNameIndex = -1;
                 return null;
             }
@@ -220,14 +209,25 @@ public class BabyNameProject implements Serializable {
     }
 
     public static boolean storeProject(BabyNameProject project, Context context) {
+        String fileName = project.getID() + ".baby";
         try {
-            FileOutputStream fos = context.openFileOutput(project.getID() + ".baby", MainActivity.MODE_WORLD_READABLE);
+            File file = new File(context.getFilesDir(), fileName);
+            if (file.exists() && file.isFile()) {
+                if (!file.delete()) {
+                    throw new Exception("Failed to delete existing file: " + fileName);
+                }
+            }
+            if (!file.createNewFile()) {
+                throw new Exception("Failed to create new file: " + fileName);
+            }
+            FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream serializer = new ObjectOutputStream(fos);
             serializer.writeObject(project);
             fos.close();
 
             project.setNeedToBeSaved(false);
         } catch (Exception e) {
+            AppLogger.error("Cannot open " + fileName);
             e.printStackTrace();
             return false;
         }
@@ -248,12 +248,7 @@ public class BabyNameProject implements Serializable {
         names.addAll(this.scores.keySet());
 
         //AppLogger.info("names before sort: "+names+" scores: "+scores);
-        Collections.sort(names, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer b1, Integer b2) {
-                return BabyNameProject.this.scores.get(b2) - BabyNameProject.this.scores.get(b1);
-            }
-        });
+        Collections.sort(names, (b1, b2) -> BabyNameProject.this.scores.get(b2) - BabyNameProject.this.scores.get(b1));
 
         //AppLogger.info("names after sort: "+names);
         int min = Math.min(10, names.size());

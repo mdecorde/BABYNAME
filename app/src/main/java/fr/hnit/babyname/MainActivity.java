@@ -16,14 +16,15 @@ You should have received a copy of the GNU General
 Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
  */
+
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,56 +35,42 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
-    public static final String UPDATE_EXTRA = "update";
-
+public class MainActivity extends AppCompatActivity
+{
     ListView namesListView;
     BabyNameAdapter adapter;
 
     public static BabyNameDatabase database = new BabyNameDatabase();
     public static ArrayList<BabyNameProject> projects = new ArrayList<>();
 
-    Intent editIntent;
-    Intent findIntent;
-    Intent settingsIntent;
-    Intent aboutIntent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (database.size() == 0)
-            database.initialize();
 
-        namesListView = (ListView) findViewById(R.id.listView);
+        if (database.size() == 0) {
+            database.initialize(getApplicationContext());
+        }
+
+        namesListView = findViewById(R.id.listView);
         registerForContextMenu(namesListView);
-        namesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                BabyNameProject project = projects.get(i);
-                if (project != null) {
-                    doFindName(project);
-                }
+
+        namesListView.setOnItemClickListener((adapterView, view, i, l) -> {
+            BabyNameProject project = projects.get(i);
+            if (project != null) {
+                doFindName(project);
             }
         });
 
         adapter = new BabyNameAdapter(this, projects);
         namesListView.setAdapter(adapter);
 
-        if (projects.size() == 0) {
+        if (projects.isEmpty()) {
             initializeProjects();
         }
-
-
-        editIntent = new Intent(MainActivity.this, EditActivity.class);
-        findIntent = new Intent(MainActivity.this, FindActivity.class);
-        settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
-        aboutIntent = new Intent(MainActivity.this, AboutActivity.class);
-
     }
 
     @Override
@@ -107,10 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 //AppLogger.info("Restoring... "+filename);
                 try {
                     BabyNameProject project = BabyNameProject.readProject(filename, this);
-                    if (project != null)
+                    if (project != null) {
                         projects.add(project);
-                    else
+                    } else {
                         Toast.makeText(MainActivity.this, "Error: could not read baby name project from "+filename, Toast.LENGTH_LONG).show();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -135,23 +123,24 @@ public class MainActivity extends AppCompatActivity {
 
         if (project == null) return false;
 
-        switch (item.getItemId()) {
-            case R.id.action_reset_baby:
+        return switch (item.getItemId()) {
+            case R.id.action_reset_baby -> {
                 doResetBaby(project);
-                return true;
-            case R.id.action_top_baby:
+                yield true;
+            }
+            case R.id.action_top_baby -> {
                 doShowTop10(project);
-                return true;
-            case R.id.action_delete_baby:
+                yield true;
+            }
+            case R.id.action_delete_baby -> {
                 doDeleteBaby(project);
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
+                yield true;
+            }
+            default -> super.onContextItemSelected(item);
+        };
     }
 
     public void doResetBaby(final BabyNameProject project) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle(R.string.reset_question_title);
@@ -179,12 +168,9 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
-
-
     }
 
     public void doDeleteBaby(final BabyNameProject project) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle(R.string.delete_question_title);
@@ -196,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                 projects.remove(project);
                 MainActivity.this.deleteFile(project.getID()+".baby");
                 adapter.notifyDataSetChanged();
-
                 dialog.dismiss();
             }
         });
@@ -214,47 +199,55 @@ public class MainActivity extends AppCompatActivity {
 
 
     public String projectToString(BabyNameProject p) {
-
-        String l1 = "";
-        if (p.genders.contains(NameData.F) && p.genders.contains(NameData.M)) {
-            l1 += getString(R.string.boy_or_girl_name);
-        } else if (p.genders.contains(NameData.M)) {
-            l1 += getString(R.string.boy_name);
+        String text = "";
+        if (p.genders.contains(BabyNameDatabase.GENDER_FEMALE) && p.genders.contains(BabyNameDatabase.GENDER_MALE)) {
+            text += getString(R.string.boy_or_girl_name);
+        } else if (p.genders.contains(BabyNameDatabase.GENDER_MALE)) {
+            text += getString(R.string.boy_name);
         } else {
-            l1 +=getString( R.string.girl_name);
+            text += getString( R.string.girl_name);
         }
 
-        if (p.origins.size() == 1) {
-            l1 += "\n\t "+String.format(getString(R.string.origin_is), p.origins.toArray()[0]);
+        // sort origins for display
+        ArrayList<String> origins = new ArrayList<>(p.origins);
+        Collections.sort(origins);
+
+        text += " ";
+        if (origins.size() == 1) {
+            text += String.format(getString(R.string.origin_is), origins.get(0));
         } else if (p.origins.size() > 1) {
-            l1 += "\n\t "+String.format(getString(R.string.origin_are), p.origins);
+            text += String.format(getString(R.string.origin_are), origins);
         } else {
-            l1 += "\n\t "+getString(R.string.no_origin);
+            text += getString(R.string.no_origin);
         }
 
         if (p.pattern != null) {
+            text += ", ";
             if (".*".equals(p.pattern.toString())) {
-                l1 += "\n\t "+getString(R.string.no_pattern);
+                text += getString(R.string.no_pattern);
             } else {
-                l1 += "\n\t "+String.format(getString(R.string.matches_with), p.pattern);
+                text += String.format(getString(R.string.matches_with), p.pattern);
             }
+            text += " ";
         }
 
         if (p.nexts.size() == 1) {
-            l1 += "\n\t"+getString(R.string.one_remaining_name);
-        } else if (p.nexts.size() == 0) {
+            text += getString(R.string.one_remaining_name);
+        } else if (p.nexts.isEmpty()) {
             int n = p.scores.size();
-            if (n > 11) n = n - 10;
-            l1 += "\n\t"+String.format(getString(R.string.no_remaining_loop), p.loop, n);
+            if (n > 11) {
+                n = n - 10;
+            }
+            text += String.format(getString(R.string.no_remaining_loop), p.loop, n);
         } else {
-            l1 += "\n\t"+String.format(getString(R.string.remaining_names), p.nexts.size());
+            text += String.format(getString(R.string.remaining_names), p.nexts.size());
         }
 
-        if (p.scores.size() > 0 && p.getBest() != null) {
-            l1 += "\n\n\t"+String.format(getString(R.string.bact_match_is), p.getBest());
+        if (!p.scores.isEmpty() && p.getBest() != null) {
+            text += " " + String.format(getString(R.string.best_match_is), p.getBest().name);
         }
 
-        return l1;
+        return text;
     }
 
     public void doShowTop10(final BabyNameProject project) {
@@ -264,10 +257,12 @@ public class MainActivity extends AppCompatActivity {
 
         int n = 0;
         for (Integer name : names) {
-            buffer.append("\n"+MainActivity.database.get(name)+": "+project.scores.get(name));
+            buffer.append("\n" + MainActivity.database.get(name).name + ": " + project.scores.get(name));
         }
 
-        if (names.size() == 0) buffer.append(getString(R.string.no_name_rated));
+        if (names.isEmpty()) {
+            buffer.append(getString(R.string.no_name_rated));
+        }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -275,39 +270,43 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(buffer.toString());
 
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
-        if (names.size() > 0)
-        builder.setNegativeButton(R.string.copy, new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog, int which) {
-                ClipboardManager clipboard = (ClipboardManager)
-                        getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("baby top10", buffer.toString());
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(MainActivity.this, R.string.text_copied, Toast.LENGTH_LONG).show();
-            }
-        });
+        if (!names.isEmpty()) {
+            builder.setNegativeButton(R.string.copy, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    ClipboardManager clipboard = (ClipboardManager)
+                            getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("baby top10", buffer.toString());
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(MainActivity.this, R.string.text_copied, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
         AlertDialog alert = builder.create();
         alert.show();
 
         //Toast.makeText(this, buffer.toString(), Toast.LENGTH_LONG).show();
     }
 
-
     public void doFindName(BabyNameProject project) {
         //AppLogger.info("Open FindActivity with "+project+" index="+projects.indexOf(project));
-        findIntent.putExtra(FindActivity.PROJECT_EXTRA, projects.indexOf(project));
-        this.startActivityForResult(findIntent, 0);
+        Intent intent = new Intent(MainActivity.this, FindActivity.class);
+        intent.putExtra(FindActivity.PROJECT_EXTRA, projects.indexOf(project));
+        this.startActivityForResult(intent, 0);
     }
 
     private void openEditActivity(BabyNameProject project) {
         //AppLogger.info("Open EditActivity with "+project+" index="+projects.indexOf(project));
-        editIntent.putExtra(EditActivity.PROJECT_EXTRA, projects.indexOf(project));
-        this.startActivityForResult(editIntent, 0);
+        Intent intent = new Intent(MainActivity.this, EditActivity.class);
+        if (project != null) {
+            intent.putExtra(EditActivity.PROJECT_EXTRA, projects.indexOf(project));
+        }
+        this.startActivityForResult(intent, 0);
     }
 
     @Override
@@ -319,25 +318,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                this.startActivityForResult(settingsIntent, 0);
-                return true;
-            case R.id.action_about:
-                this.startActivityForResult(aboutIntent, 0);
-                return true;
-            case R.id.action_new_baby:
+        return switch (item.getItemId()) {
+            case R.id.action_settings -> {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                this.startActivityForResult(intent, 0);
+                yield true;
+            }
+            case R.id.action_about -> {
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                this.startActivityForResult(intent, 0);
+                yield true;
+            }
+            case R.id.action_new_baby -> {
                 doNewBaby();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+                yield true;
+            }
+            default -> super.onOptionsItemSelected(item);
+        };
     }
 
     public void doNewBaby() {
         Toast.makeText(this, R.string.new_baby, Toast.LENGTH_LONG).show();
-        BabyNameProject project = new BabyNameProject();
-        projects.add(project);
-        openEditActivity(project);
+        openEditActivity(null);
     }
 }
