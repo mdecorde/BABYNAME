@@ -1,0 +1,5 @@
+* convert codebase to Kotlin
+* allow to move back and forth in the name list
+* remove 10% of the names on each loop
+* make the rating stars fit the width without cropping
+* show progress also in percent

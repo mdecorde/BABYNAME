@@ -1,0 +1,5 @@
+* add Android 15 support
+* move baby names into the babynames.csv file
+* show name counter in edit activity
+* small UI optimizations
+* code cleanup
