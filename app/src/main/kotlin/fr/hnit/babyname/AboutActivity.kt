@@ -1,8 +1,8 @@
 package fr.hnit.babyname
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 /*
 The babyname app is free software: you can redistribute it
