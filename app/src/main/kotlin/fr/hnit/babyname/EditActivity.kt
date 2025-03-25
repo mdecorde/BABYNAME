@@ -88,9 +88,8 @@ class EditActivity : AppCompatActivity() {
         }
         originsListView.adapter = adapter
 
-        val projectIndex = intent.getIntExtra(PROJECT_EXTRA, -1)
+        val projectIndex = intent.getIntExtra(MainActivity.PROJECT_EXTRA, -1)
         project = if (projectIndex == -1) {
-            //Log.d(this, "new baby");
             BabyNameProject()
         } else {
             MainActivity.projects[projectIndex]
@@ -98,18 +97,14 @@ class EditActivity : AppCompatActivity() {
 
         applyFromProject(project)
 
-        loadFinished = true
         updateNameCounter()
+        loadFinished = true
     }
 
     fun applyFromProject(project: BabyNameProject) {
-        //Log.d(this, "Set project preferences: "+project);
-
         val genders = project.genders
-        if (genders.contains(BabyNameDatabase.GENDER_FEMALE) && genders.contains(
-                BabyNameDatabase.GENDER_MALE
-            )
-        ) {
+        if (genders.contains(BabyNameDatabase.GENDER_FEMALE)
+                && genders.contains(BabyNameDatabase.GENDER_MALE)) {
             genderRadio.check(R.id.all_radio)
         } else if (genders.contains(BabyNameDatabase.GENDER_MALE)) {
             genderRadio.check(R.id.boy_radio)
@@ -121,30 +116,29 @@ class EditActivity : AppCompatActivity() {
         patternText.setText(project.pattern.toString())
 
         // clear origin selection
-        var i = 0
-        while (i < originsListView.count) {
-            originsListView.setItemChecked(i, false)
-            i += 1
+        for (i in adapter.checked.indices) {
+            adapter.checked[i] = false
         }
 
         // select project origins
         for (origin in project.origins) {
-            val position = adapter.getPosition(origin)
-            if (position >= 0) {
-                originsListView.setItemChecked(position, true)
+            val i = adapter.getPosition(origin)
+            if (i > -1) {
+                adapter.checked[i] = true
             }
         }
+
+        adapter.notifyDataSetChanged()
     }
 
     fun storeToProject(project: BabyNameProject): Boolean {
-        //Log.d("storeToProject()");
         // update origins
         project.origins.clear()
         var i = 0
         while (i < adapter.origins.size) {
             val origin = adapter.origins[i]
             val checked = adapter.checked[i]
-            if (checked!! && origin != null) {
+            if (checked && origin != null) {
                 project.origins.add(origin)
             }
             i += 1
@@ -179,7 +173,7 @@ class EditActivity : AppCompatActivity() {
             return false
         }
 
-        //Toast.makeText(EditActivity.this, "Project set, "+project.nexts.size()+" names to review !", Toast.LENGTH_SHORT).show();
+        project.rebuildNexts()
         project.setNeedToBeSaved(true)
 
         return true
@@ -205,48 +199,30 @@ class EditActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.edit, menu)
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_cancelsave_babyproject -> {
-                //Log.d("Cancel changes");
-                project.setNeedToBeSaved(false)
-                MainActivity.projects.remove(project)
-                this.finish()
-                return true
-            }
-
-            R.id.action_save_babyproject -> {
-                //Log.d("Save project");
+            R.id.action_save_project -> {
                 if (storeToProject(project)) {
-                    if (project.loop == 0) {
-                        // initialize
-                        project.nextLoop()
-                    }
-
                     if (project.nexts.isEmpty()) {
-                        Toast.makeText(
-                            this, R.string.too_much_constraint, Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this, R.string.too_much_constraint, Toast.LENGTH_SHORT).show()
                         return false
                     }
 
+                    // add if not added yet
                     if (MainActivity.projects.indexOf(project) == -1) {
                         MainActivity.projects.add(project)
                     }
 
-                    this.finish()
+                    finish()
                 }
                 return true
             }
 
             else -> return super.onOptionsItemSelected(item)
         }
-    }
-
-    companion object {
-        const val PROJECT_EXTRA: String = "project_position"
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FindActivity">
+    tools:context=".FlipSearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,6 +97,14 @@
             android:layout_weight="1"
             android:text="@string/previous"
             android:id="@+id/previous_button" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="Remove"
+            android:id="@+id/remove_button" />
 
         <Button
             android:layout_width="fill_parent"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:weightSum="1"
@@ -7,12 +8,13 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingEnd="5dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="3dp"
+            android:paddingRight="3dp"
             android:text="New Text"
             android:id="@+id/list_text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="0.99" />
+            android:layout_weight="0.99"
+            tools:ignore="RtlSymmetry" />
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -23,50 +25,47 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/go"
-                android:id="@+id/list_go"
-                android:contentDescription="@string/go"
+                android:id="@+id/list_flip_find"
                 android:background="@null"
-                android:src="@drawable/star"
-                android:layout_marginBottom="10dp"
+                android:src="@drawable/flip_search"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_row="0"
                 android:layout_column="0" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/list_scroll_find"
+                android:background="@null"
+                android:src="@drawable/scroll_search"
+                android:layout_marginBottom="5dp"
+                android:layout_row="0"
+                android:layout_column="1" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
                 android:id="@+id/list_delete"
-                android:contentDescription="@string/delete"
                 android:background="@null"
-                android:src="@drawable/cross"
-                android:layout_marginBottom="10dp"
-                android:layout_row="0"
-                android:layout_column="1" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/top"
-                android:id="@+id/list_top"
-                android:contentDescription="@string/top"
-                android:background="@null"
-                android:src="@drawable/medal"
-                android:layout_marginBottom="10dp"
+                android:src="@drawable/delete"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_row="1"
                 android:layout_column="0" />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reset"
-                android:id="@+id/list_reset"
-                android:contentDescription="@string/reset"
+                android:text="@string/top"
+                android:id="@+id/list_top"
                 android:background="@null"
-                android:src="@drawable/medaldelete"
-                android:layout_marginBottom="10dp"
+                android:src="@drawable/trophy"
                 android:layout_row="1"
                 android:layout_column="1" />
 
         </GridLayout>
+
 </LinearLayout>

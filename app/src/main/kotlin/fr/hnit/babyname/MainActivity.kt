@@ -10,13 +10,10 @@ import android.view.ContextMenu.ContextMenuInfo
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
 import android.widget.AdapterView.AdapterContextMenuInfo
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Collections
 
 /*
 The babyname app is free software: you can redistribute it
@@ -37,8 +34,8 @@ http://www.gnu.org/licenses
 */
 
 class MainActivity : AppCompatActivity() {
-    lateinit var namesListView: ListView
-    lateinit var adapter: BabyNameAdapter
+    private lateinit var namesListView: ListView
+    private lateinit var adapter: ProjectListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +48,7 @@ class MainActivity : AppCompatActivity() {
         namesListView = findViewById(R.id.listView)
         registerForContextMenu(namesListView)
 
-        namesListView.setOnItemClickListener { adapterView: AdapterView<*>?, view: View?, i: Int, l: Long ->
-            doFindName(projects[i])
-        }
-
-        adapter = BabyNameAdapter(this, projects)
+        adapter = ProjectListAdapter(this, projects)
         namesListView.adapter = adapter
 
         if (projects.isEmpty()) {
@@ -64,15 +57,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     public override fun onResume() {
-        super.onResume() // Always call the superclass method first
+        super.onResume()
         adapter.notifyDataSetChanged()
         for (project in projects) {
             if (!project.needSaving) {
                 continue
             }
 
-            //Toast.makeText(this, "Saving changes of "+project+"... "+project, Toast.LENGTH_SHORT).show();
-            if (!BabyNameProject.Companion.storeProject(project, this)) {
+            if (!BabyNameProject.storeProject(project, this)) {
                 Toast.makeText(
                     this,
                     "Error: could not save changes to babyname project: $project",
@@ -83,10 +75,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeProjects() {
-        //Log.d("Initializing projects...");
         for (filename in this.fileList()) {
             if (filename.endsWith(".baby")) {
-                //Log.d("Restoring... "+filename);
+                //Log.d("Loading $filename");
                 try {
                     val project: BabyNameProject? = BabyNameProject.readProject(filename, this)
                     if (project != null) {
@@ -107,9 +98,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo)
-
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_list, menu)
+        menuInflater.inflate(R.menu.menu_list, menu)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -119,18 +108,28 @@ class MainActivity : AppCompatActivity() {
         val project = adapter.getItem(info.position) ?: return false
 
         return when (item.itemId) {
-            R.id.action_reset_baby -> {
-                doResetBaby(project)
+            R.id.action_edit_project -> {
+                doEditProject(project)
                 true
             }
 
-            R.id.action_top_baby -> {
+            R.id.action_reset_scores -> {
+                doResetScores(project)
+                true
+            }
+
+            R.id.action_delete_project -> {
+                doDeleteProject(project)
+                true
+            }
+
+            R.id.action_clone_project -> {
+                doCloneProject(project)
+                true
+            }
+
+            R.id.action_top_names -> {
                 doShowTop10(project)
-                true
-            }
-
-            R.id.action_delete_baby -> {
-                doDeleteBaby(project)
                 true
             }
 
@@ -138,14 +137,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun doResetBaby(project: BabyNameProject) {
+    private fun doResetScores(project: BabyNameProject) {
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle(R.string.reset_question_title)
         builder.setMessage(R.string.reset_question_content)
 
         builder.setPositiveButton(R.string.yes) { dialog, _ ->
-            project.reset()
+            project.scores.clear()
+            project.setNeedToBeSaved(true)
             adapter.notifyDataSetChanged()
             if (!BabyNameProject.storeProject(project, this@MainActivity)) {
                 Toast.makeText(
@@ -157,7 +157,7 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(R.string.no) { dialog, which ->
+        builder.setNegativeButton(R.string.no) { dialog, _ ->
             dialog.dismiss()
         }
 
@@ -165,29 +165,33 @@ class MainActivity : AppCompatActivity() {
         alert.show()
     }
 
-    fun doDeleteBaby(project: BabyNameProject) {
+    private fun doCloneProject(project: BabyNameProject) {
+        val cloned = project.cloneProject()
+        cloned.setNeedToBeSaved(true)
+        projects.add(cloned)
+        adapter.notifyDataSetChanged()
+    }
+
+    fun doDeleteProject(project: BabyNameProject) {
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle(R.string.delete_question_title)
         builder.setMessage(R.string.delete_question_content)
 
-        builder.setPositiveButton(
-            R.string.yes
-        ) { dialog, _ ->
+        builder.setPositiveButton(R.string.yes) { dialog, _ ->
             projects.remove(project)
             this@MainActivity.deleteFile(project.iD + ".baby")
             adapter.notifyDataSetChanged()
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(
-            R.string.no
-        ) { dialog, _ -> dialog.dismiss() }
+        builder.setNegativeButton(R.string.no) { dialog, _ ->
+            dialog.dismiss()
+        }
 
         val alert = builder.create()
         alert.show()
     }
-
 
     fun projectToString(p: BabyNameProject): String {
         var text = ""
@@ -223,12 +227,10 @@ class MainActivity : AppCompatActivity() {
             text += " "
         }
 
-        //Log.d(this, "p.loop: ${p.loop}, p.nexts.size: ${p.nexts.size}, p.scores.size: ${p.scores.size} p.nextsIndex: ${p.nextsIndex}, remainingNames: ${p.nexts.size - p.nextsIndex}")
+        //Log.d(this, "p.nexts.size: ${p.nexts.size}, p.scores.size: ${p.scores.size} p.nextsIndex: ${p.nextsIndex}, remainingNames: ${p.nexts.size - p.nextsIndex}")
 
         if (p.nexts.size == 1) {
             text += getString(R.string.one_remaining_name)
-        } else if (p.nexts.size == p.scores.size) {
-            text += String.format(getString(R.string.no_remaining_loop), p.loop, p.nexts.size)
         } else {
             val remainingNames = p.nexts.size - p.nextsIndex
             text += String.format(getString(R.string.remaining_names), remainingNames)
@@ -262,18 +264,11 @@ class MainActivity : AppCompatActivity() {
         builder.setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
 
         if (names.isNotEmpty()) {
-            builder.setNegativeButton(
-                R.string.copy
-            ) { _, _ ->
-                val clipboard =
-                    getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            builder.setNegativeButton(R.string.copy) { _, _ ->
+                val clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = ClipData.newPlainText("baby top10", buffer.toString())
                 clipboard.setPrimaryClip(clip)
-                Toast.makeText(
-                    this@MainActivity,
-                    R.string.text_copied,
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, R.string.text_copied, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -283,25 +278,28 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this, buffer.toString(), Toast.LENGTH_LONG).show();
     }
 
-    fun doFindName(project: BabyNameProject) {
-        //Log.d("Open FindActivity with "+project+" index="+projects.indexOf(project));
-        val intent = Intent(this@MainActivity, FindActivity::class.java)
-        intent.putExtra(FindActivity.PROJECT_EXTRA, projects.indexOf(project))
-        this.startActivityForResult(intent, 0)
+    fun doFlipSearch(project: BabyNameProject) {
+        val intent = Intent(this, FlipSearchActivity::class.java)
+        intent.putExtra(PROJECT_EXTRA, projects.indexOf(project))
+        startActivityForResult(intent, 0)
     }
 
-    private fun openEditActivity(project: BabyNameProject?) {
-        //Log.d("Open EditActivity with "+project+" index="+projects.indexOf(project));
-        val intent = Intent(this@MainActivity, EditActivity::class.java)
+    fun doScrollSearch(project: BabyNameProject) {
+        val intent = Intent(this, ScrollSearchActivity::class.java)
+        intent.putExtra(PROJECT_EXTRA, projects.indexOf(project))
+        startActivityForResult(intent, 0)
+    }
+
+    fun doEditProject(project: BabyNameProject?) {
+        val intent = Intent(this, EditActivity::class.java)
         if (project != null) {
-            intent.putExtra(EditActivity.PROJECT_EXTRA, projects.indexOf(project))
+            intent.putExtra(PROJECT_EXTRA, projects.indexOf(project))
         }
-        this.startActivityForResult(intent, 0)
+        startActivityForResult(intent, 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
@@ -330,10 +328,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun doNewBaby() {
         Toast.makeText(this, R.string.new_baby, Toast.LENGTH_LONG).show()
-        openEditActivity(null)
+        doEditProject(null)
     }
 
     companion object {
+        const val PROJECT_EXTRA: String = "project_position"
         var database = BabyNameDatabase()
         var projects = ArrayList<BabyNameProject>()
     }

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_reset_baby"
+        android:id="@+id/action_edit_project"
+        android:title="Edit Project"/>
+    <item
+        android:id="@+id/action_reset_scores"
         android:title="@string/action_reset_baby"/>
     <item
-        android:id="@+id/action_top_baby"
-        android:title="@string/action_top_baby"/>
+        android:id="@+id/action_delete_project"
+        android:title="Delete Project"/>
     <item
-        android:id="@+id/action_delete_baby"
-        android:title="@string/action_delete_baby"/>
+        android:id="@+id/action_clone_project"
+        android:title="Clone Project"/>
+    <item
+        android:id="@+id/action_top_names"
+        android:title="Show Top 10"/>
 </menu>

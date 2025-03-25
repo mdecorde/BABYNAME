@@ -23,8 +23,13 @@
                 android:value="fr.hnit.babyname.MainActivity" />
         </activity>
         <activity
-            android:name="fr.hnit.babyname.FindActivity"
+            android:name="fr.hnit.babyname.FlipSearchActivity"
             android:noHistory="true" android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.hnit.babyname.MainActivity" />
+        </activity>
+        <activity android:name=".ScrollSearchActivity" android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.hnit.babyname.MainActivity" />

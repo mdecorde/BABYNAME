@@ -13,17 +13,22 @@ class OriginAdapter(
     val origins: ArrayList<String?>,
     mContext: Context,
     private val onSelectionChange: () -> Unit
-) :
-    ArrayAdapter<Any?>(
-        mContext, R.layout.item_origin, listOf<Any>(
-            origins
-        )
-    ) {
+) : ArrayAdapter<Any?>(mContext, R.layout.item_origin, listOf<Any>(origins)) {
+
     val checked: ArrayList<Boolean> = ArrayList(
         Collections.nCopies(
             origins.size, java.lang.Boolean.FALSE
         )
     )
+
+    override fun getPosition(origin: Any?): Int {
+        for (i in origins.indices) {
+            if (origins[i] == origin) {
+                return i
+            }
+        }
+        return -1
+    }
 
     override fun getCount(): Int {
         return origins.size

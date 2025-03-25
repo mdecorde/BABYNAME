@@ -1,12 +1,10 @@
 package fr.hnit.babyname
 
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -14,8 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Collections
-import java.util.Locale
 
 /*
 The babyname app is free software: you can redistribute it
@@ -35,12 +31,13 @@ Public License along with the TXM platform. If not, see
 http://www.gnu.org/licenses
 */
 
-open class FindActivity : AppCompatActivity() {
+open class FlipSearchActivity : AppCompatActivity() {
     private lateinit var project: BabyNameProject
     private var currentBabyName: BabyName? = null
 
     private lateinit var backgroundImage: ImageView
     private lateinit var nextButton: Button
+    private lateinit var removeButton: Button
     private lateinit var previousButton: Button
     private lateinit var rateBar: RatingBar
     private lateinit var nameText: TextView
@@ -51,9 +48,9 @@ open class FindActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_find)
+        setContentView(R.layout.activity_flip_search)
 
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(this@FindActivity)
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(this@FlipSearchActivity)
         goToNext = sharedPref.getBoolean("pref_next_ontouch", false)
 
         backgroundImage = findViewById(R.id.imageView)
@@ -64,6 +61,7 @@ open class FindActivity : AppCompatActivity() {
         }
 
         nextButton = findViewById(R.id.next_button)
+        removeButton = findViewById(R.id.remove_button)
         previousButton = findViewById(R.id.previous_button)
         rateBar = findViewById(R.id.rate_bar)
         nameText = findViewById(R.id.name_text)
@@ -71,10 +69,9 @@ open class FindActivity : AppCompatActivity() {
         progressCounterText = findViewById(R.id.progress_counter)
         progressPercentText = findViewById(R.id.progress_percent)
 
-        nextButton.setOnClickListener { view: View? -> nextName() }
-        nextButton.isEnabled = !goToNext
-
-        previousButton.setOnClickListener { view: View? -> previousName() }
+        nextButton.setOnClickListener { nextName() }
+        removeButton.setOnClickListener { removeName() }
+        previousButton.setOnClickListener { previousName() }
 
         rateBar.setOnTouchListener { view: View?, motionEvent: MotionEvent ->
             if (goToNext && motionEvent.action == MotionEvent.ACTION_UP) {
@@ -83,84 +80,28 @@ open class FindActivity : AppCompatActivity() {
             false
         }
 
-        val index = intent.getIntExtra(PROJECT_EXTRA, 0)
+        val index = intent.getIntExtra(MainActivity.PROJECT_EXTRA, 0)
         if (index >= 0 && MainActivity.projects.size > index) {
             project = MainActivity.projects[index]
             currentBabyName = project.currentName()
         }
 
         if (currentBabyName == null) {
-            Toast.makeText(this@FindActivity, "No names to review!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@FlipSearchActivity, R.string.message_no_name_to_review, Toast.LENGTH_LONG).show()
             finish()
         } else {
             updateName()
         }
-    }
 
-    private fun updateName() {
-        val babyName = currentBabyName
-        if (babyName == null) {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle(R.string.finish_loop_tile)
-            builder.setMessage(R.string.finish_review_question)
-            builder.setPositiveButton(R.string.yes) { dialog: DialogInterface, id: Int ->
-                project.nextLoop()
-                dialog.dismiss()
-                finish()
-            }
-            builder.setNegativeButton(R.string.no) { dialog: DialogInterface, id: Int ->
-                dialog.dismiss()
-                finish()
-            }
-            builder.show()
-        } else {
-            nameText.text = babyName.name
+        rateBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener {
+                ratingBar: RatingBar, rating: Float, fromUser: Boolean ->
+            val babyName = currentBabyName
+            if (fromUser && babyName != null) {
+                currentBabyName
 
-            if (project.genders.isNotEmpty() || project.origins.size > 1) {
-                val context = applicationContext
-                val genres = ArrayList(babyName.genres)
-                val origins = ArrayList(babyName.origins)
-                genres.sort()
-                origins.sort()
-                var extra = ""
-                if (genres.isNotEmpty()) {
-                    extra += genresToLocale(context, genres).toString()
-                }
-                extra += " "
-                if (origins.isNotEmpty()) {
-                    extra += originsToLocale(context, origins).toString()
-                }
-                extraText.text = extra
-            } else {
-                extraText.text = ""
-            }
+                val score = (rating * 2.0F).toInt()
+                project.scores[babyName.id] = score
 
-            progressCounterText.text = String.format("(%d/%d)", project.nextsIndex, project.nexts.size)
-            progressPercentText.text = String.format("%d%%", 100 * (project.nextsIndex) / project.nexts.size)
-
-            // set existing score or default to 0
-            rateBar.rating = (project.scores[babyName.id] ?: 0).toFloat()
-        }
-    }
-
-    private fun nextName() {
-        saveRate()
-        currentBabyName = project.nextName()
-        updateName()
-    }
-
-    private fun previousName() {
-        saveRate()
-        currentBabyName = project.previousName()
-        updateName()
-    }
-
-    private fun saveRate() {
-        val babyName = currentBabyName
-        if (babyName != null) {
-            val score = rateBar.rating.toInt()
-            val changed = project.evaluateScore(babyName, score)
-            if (changed) {
                 Toast.makeText(
                     this,
                     String.format(
@@ -170,52 +111,63 @@ open class FindActivity : AppCompatActivity() {
                     ),
                     Toast.LENGTH_SHORT
                 ).show()
+
                 project.setNeedToBeSaved(true)
             }
         }
     }
 
+    private fun updateName() {
+        val babyName = currentBabyName
+        if (babyName == null) {
+            // last or first name reached
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.finish_round_title)
+            builder.setMessage(String.format(getString(R.string.finish_round_message), BabyNameProject.DROP_RATE_PERCENT))
+            builder.setPositiveButton(R.string.yes) { dialog: DialogInterface, id: Int ->
+                project.nextRound()
+                dialog.dismiss()
+                finish()
+            }
+            builder.setNegativeButton(R.string.no) { dialog: DialogInterface, id: Int ->
+                dialog.dismiss()
+            }
+            builder.show()
+        } else {
+            nameText.text = babyName.name
+
+            if (project.genders.isNotEmpty() || project.origins.size > 1) {
+                extraText.text = babyName.getMetaString(applicationContext)
+            } else {
+                extraText.text = ""
+            }
+
+            progressCounterText.text = String.format("(%d/%d)", project.nextsIndex + 1, project.nexts.size)
+            progressPercentText.text = String.format("%d%%", (100 * project.nextsIndex) / project.nexts.size)
+
+            // set existing score or default to 0
+            rateBar.rating = (project.scores[babyName.id] ?: 0).toFloat() / 2.0F
+        }
+    }
+
+    private fun nextName() {
+        currentBabyName = project.nextName()
+        updateName()
+    }
+
+    private fun removeName() {
+        project.removeCurrent()
+        currentBabyName = project.currentName()
+        updateName()
+    }
+
+    private fun previousName() {
+        currentBabyName = project.previousName()
+        updateName()
+    }
+
     public override fun onStop() {
         super.onStop()
         project.setNeedToBeSaved(true)
-    }
-
-    companion object {
-        const val PROJECT_EXTRA: String = "project_position"
-
-        private fun genresToLocale(
-            context: Context,
-            origins: ArrayList<String>
-        ): ArrayList<String> {
-            val ret = ArrayList<String>()
-            var i = 0
-            while (i < origins.size) {
-                when (origins[i]) {
-                    BabyNameDatabase.GENDER_FEMALE -> ret.add(context.getString(R.string.girl))
-                    BabyNameDatabase.GENDER_MALE -> ret.add(context.getString(R.string.boy))
-                    else -> ret.add(origins[i])
-                }
-                i += 1
-            }
-            return ret
-        }
-
-        // Make every origin begin with an upper case letter.
-        // It would be nice to have proper localisation in the future.
-        private fun originsToLocale(
-            context: Context,
-            origins: ArrayList<String>
-        ): ArrayList<String> {
-            val ret = ArrayList<String>()
-            var i = 0
-            while (i < origins.size) {
-                val origin = origins[i]
-                ret.add(
-                    origin.substring(0, 1).uppercase(Locale.getDefault()) + origin.substring(1)
-                )
-                i += 1
-            }
-            return ret
-        }
     }
 }
