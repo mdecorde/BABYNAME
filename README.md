@@ -13,7 +13,7 @@ Features:
 [<img src="fdroid.png" alt="Get it on F-Droid" width="300px">](https://f-droid.org/repository/browse/?fdid=fr.hnit.babyname)
 
 <p align="center">
-<img src="metadata/en-US/images/phoneScreenshots/main_screen.png" width="250"> <img src="metadata/en-US/images/phoneScreenshots/edit_screen.png" width="250"> <img src="metadata/en-US/images/phoneScreenshots/find_screen.png" width="250">
+<img src="metadata/en-US/images/phoneScreenshots/main_screen.png" width="200"> <img src="metadata/en-US/images/phoneScreenshots/edit_screen.png" width="200"> <img src="metadata/en-US/images/phoneScreenshots/flip_search_screen.png" width="200"> <img src="metadata/en-US/images/phoneScreenshots/scroll_search_screen.png" width="200">
 </p>
 
 Icons from [Googles Material Design](https://fonts.google.com/icons).
