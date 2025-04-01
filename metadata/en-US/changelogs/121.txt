@@ -1,0 +1,2 @@
+* disable right swipe in list search
+* change maintainer
