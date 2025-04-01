@@ -1,2 +1,4 @@
 * disable right swipe in list search
-* change maintainer
+* add undo functionality in flip search
+* remove score if name is removed in scroll search
+* change maintainer string
