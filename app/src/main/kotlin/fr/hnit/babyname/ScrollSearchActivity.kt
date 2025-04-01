@@ -79,7 +79,7 @@ open class ScrollSearchActivity : AppCompatActivity() {
 
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+            ItemTouchHelper.LEFT
         ) {
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -90,7 +90,7 @@ open class ScrollSearchActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
+                if (direction == ItemTouchHelper.LEFT) {
                     val position = viewHolder.adapterPosition
                     val nameId = project.nexts[position]
 
