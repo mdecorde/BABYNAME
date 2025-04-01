@@ -131,13 +131,6 @@ class BabyNameProject() : Serializable {
         }
     }
 
-    fun removeCurrent() {
-        if (nextsIndex >= 0 && nextsIndex < nexts.size) {
-            scores.remove(nexts[nextsIndex])
-            nexts.removeAt(nextsIndex)
-        }
-    }
-
     fun nextRound() {
         // sort by score, lowest scores last
         nexts.sortWith { i1: Int, i2: Int -> (scores[i2] ?: 0) - (scores[i1] ?: 0 ) }

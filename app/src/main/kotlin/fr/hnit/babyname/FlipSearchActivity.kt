@@ -1,17 +1,20 @@
 package fr.hnit.babyname
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 
 /*
 The babyname app is free software: you can redistribute it
@@ -44,6 +47,7 @@ open class FlipSearchActivity : AppCompatActivity() {
     private lateinit var extraText: TextView
     private lateinit var progressCounterText: TextView
     private lateinit var progressPercentText: TextView
+    private lateinit var buttonLayout: LinearLayout
     private var goToNext: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +72,7 @@ open class FlipSearchActivity : AppCompatActivity() {
         extraText = findViewById(R.id.extra_text)
         progressCounterText = findViewById(R.id.progress_counter)
         progressPercentText = findViewById(R.id.progress_percent)
+        buttonLayout = findViewById(R.id.buttons)
 
         nextButton.setOnClickListener { nextName() }
         removeButton.setOnClickListener { removeName() }
@@ -156,9 +161,34 @@ open class FlipSearchActivity : AppCompatActivity() {
     }
 
     private fun removeName() {
-        project.removeCurrent()
+        val position = project.nextsIndex
+        val nameId = project.nexts.removeAt(position)
+        val scoreBackup = project.scores.remove(nameId)
+
+        val needSavingBackup =  project.needSaving
+        project.needSaving = true
+
         currentBabyName = project.currentName()
         updateName()
+
+        val snackbar = Snackbar.make(
+            buttonLayout,
+            R.string.name_was_removed,
+            Snackbar.LENGTH_LONG
+        )
+        snackbar.setAction(R.string.undo) {
+            project.nexts.add(position, nameId)
+            project.needSaving = needSavingBackup
+            if (scoreBackup != null) {
+                project.scores[nameId] = scoreBackup
+            }
+
+            currentBabyName = project.currentName()
+            updateName()
+        }
+
+        snackbar.setActionTextColor(Color.YELLOW)
+        snackbar.show()
     }
 
     private fun previousName() {

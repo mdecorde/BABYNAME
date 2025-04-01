@@ -37,6 +37,7 @@
     <string name="n_name_left" formatted="false">%d left.</string>
     <string name="name_pattern_malformed" formatted="false">Name pattern is malformed : \n%s</string>
     <string name="name_rated_score" formatted="false">%s rated: %d</string>
+    <string name="name_was_removed">Name was removed from the list.</string>
     <string name="names_counter">(%d Names)</string>
     <string name="new_baby">New baby! \\o/</string>
     <string name="next">Next</string>
@@ -54,6 +55,7 @@
     <string name="pattern_help">The pattern is a regular expression. For instance: \n - \'.....+\' finds names with length greater than 5 letters, \n - \'R...+\' finds name starting with the \'R\' letter and length is greater than 4 letters, \n - \'.+r\' finds name ending with the \'r\' letter.\n\nMore informations at https://developer.android.com/reference/java/util/regex/Pattern.html</string>
     <string name="previous">Previous</string>
     <string name="remaining_names" formatted="false">%d remaining names to review.</string>
+    <string name="remove">Remove</string>
     <string name="reset">Reset</string>
     <string name="reset_question_content">Do you want to reset this babyname project scores?</string>
     <string name="reset_question_title">Reset babyname project scores</string>
@@ -62,5 +64,6 @@
     <string name="too_much_constraint">Too much name constraint, no name found</string>
     <string name="top">Top 10!</string>
     <string name="top_title">Top 10!</string>
+    <string name="undo">Undo</string>
     <string name="yes">Yes</string>
 </resources>

@@ -92,22 +92,25 @@ open class ScrollSearchActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 if (direction == ItemTouchHelper.LEFT) {
                     val position = viewHolder.adapterPosition
-                    val nameId = project.nexts[position]
+                    val nameId = project.nexts.removeAt(position)
+                    val scoreBackup = project.scores.remove(nameId)
 
-                    var needSavingBackup =  project.needSaving
+                    val needSavingBackup =  project.needSaving
                     project.needSaving = true
 
-                    project.nexts.removeAt(position)
                     scrollAdapter.notifyItemRemoved(position)
 
                     val snackbar = Snackbar.make(
                         recyclerView,
-                        "Name was removed from the list.",
+                        R.string.name_was_removed,
                         Snackbar.LENGTH_LONG
                     )
-                    snackbar.setAction("Undo") {
+                    snackbar.setAction(R.string.undo) {
                         project.nexts.add(position, nameId)
                         project.needSaving = needSavingBackup
+                        if (scoreBackup != null) {
+                            project.scores[nameId] = scoreBackup
+                        }
                         recyclerView.scrollToPosition(position)
                         scrollAdapter.notifyItemInserted(position)
                     }
