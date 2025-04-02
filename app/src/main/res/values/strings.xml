@@ -25,7 +25,7 @@
     <string name="dialog_drop_message">Drop last %d of %d names?</string>
     <string name="dialog_drop_title">Drop</string>
     <string name="edit_title">Baby Name Preferences</string>
-    <string name="finish_round_message">End round, remove worst %d names and shuffle?</string>
+    <string name="finish_round_message">End round, remove worst %d%% of names and shuffle?</string>
     <string name="finish_round_title">Finish</string>
     <string name="genre">Gender:</string>
     <string name="girl">Girl</string>
