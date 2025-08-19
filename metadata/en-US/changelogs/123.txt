@@ -1,0 +1,2 @@
+* shuffle names when a project is created/changed
+* store app state on pause and exit
