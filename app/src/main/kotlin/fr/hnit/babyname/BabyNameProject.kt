@@ -177,6 +177,7 @@ class BabyNameProject() : Serializable {
                 nexts.add(i)
             }
         }
+        nexts.shuffle()
     }
 
     fun reset() {
