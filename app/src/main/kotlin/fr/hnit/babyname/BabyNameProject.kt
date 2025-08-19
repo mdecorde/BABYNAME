@@ -163,6 +163,7 @@ class BabyNameProject() : Serializable {
 
     fun nextName(): BabyName? {
         if (nextsIndex >= -1 && (nextsIndex + 1) < nexts.size) {
+            setNeedToBeSaved(true)
             nextsIndex += 1
             return MainActivity.database.get(nexts[nextsIndex])
         } else {

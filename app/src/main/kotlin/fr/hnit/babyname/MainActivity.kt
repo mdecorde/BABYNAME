@@ -56,9 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public override fun onResume() {
-        super.onResume()
-        adapter.notifyDataSetChanged()
+    private fun storeProjects() {
         for (project in projects) {
             if (!project.needSaving) {
                 continue
@@ -72,6 +70,16 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        storeProjects()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        storeProjects()
     }
 
     private fun initializeProjects() {
