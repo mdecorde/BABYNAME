@@ -72,6 +72,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    public override fun onResume() {
+       super.onResume()
+       adapter.notifyDataSetChanged()
+    }
+
     override fun onPause() {
         super.onPause()
         storeProjects()
